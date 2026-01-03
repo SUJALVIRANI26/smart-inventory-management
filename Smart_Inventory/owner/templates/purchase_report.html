@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Purchase Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>DealDeck Owner</span>
+        </div>
+
+        <div class="menu-category">Dashboard</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item active"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Purchase Analysis Report</h2>
+                <span>December 2023 - Supplier Purchases & Costs</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="purchasePeriod">Period</label>
+                    <select id="purchasePeriod">
+                        <option>December 2023</option>
+                        <option>Last 30 Days</option>
+                        <option>Quarter 4 2023</option>
+                        <option>Full Year 2023</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="supplierFilter">Supplier</label>
+                    <select id="supplierFilter">
+                        <option>All Suppliers</option>
+                        <option>Tech Supplies Inc.</option>
+                        <option>SoundMax Distributors</option>
+                        <option>Furniture World</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report"><i class="fa-solid fa-chart-simple"></i> Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="summary-value">$147,645</div>
+                    <div class="summary-label">Total Purchases</div>
+                    <span class="badge success">+10.2%</span>
+                </div>
+                <div class="summary-item success">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <div class="summary-value">48</div>
+                    <div class="summary-label">Purchase Orders</div>
+                    <span class="badge success">+8.7%</span>
+                </div>
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-truck"></i>
+                    <div class="summary-value">12</div>
+                    <div class="summary-label">Active Suppliers</div>
+                    <span class="badge success">+2</span>
+                </div>
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-percent"></i>
+                    <div class="summary-value">45%</div>
+                    <div class="summary-label">Cost of Goods</div>
+                    <span class="badge success">-0.8%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Purchase Trend</h3>
+                    <div style="height: 250px;"><canvas id="purchaseChart"></canvas></div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Supplier Performance</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>On-Time Delivery</span>
+                                <span style="font-weight: 600; color: var(--success);">98%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Excellent supplier performance</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Order Accuracy</span>
+                                <span style="font-weight: 600; color: var(--success);">99%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Minimal order errors</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Avg. Lead Time</span>
+                                <span style="font-weight: 600; color: var(--warning);">7 days</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Within acceptable range</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Cost Savings</span>
+                                <span style="font-weight: 600; color: var(--success);">5.2%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Negotiated better terms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Top Suppliers by Purchase Volume</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Supplier</th>
+                            <th>Purchase Orders</th>
+                            <th>Total Amount</th>
+                            <th>Avg. Order Value</th>
+                            <th>On-Time Rate</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tech Supplies Inc.</strong></td>
+                            <td>12</td>
+                            <td>$48,924</td>
+                            <td>$4,077</td>
+                            <td>99%</td>
+                            <td><span style="color: var(--warning);">4.9/5</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SoundMax Distributors</strong></td>
+                            <td>10</td>
+                            <td>$32,845</td>
+                            <td>$3,285</td>
+                            <td>98%</td>
+                            <td><span style="color: var(--warning);">4.7/5</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Furniture World</strong></td>
+                            <td>8</td>
+                            <td>$28,924</td>
+                            <td>$3,616</td>
+                            <td>97%</td>
+                            <td><span style="color: var(--warning);">4.5/5</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>TechWear Solutions</strong></td>
+                            <td>7</td>
+                            <td>$18,745</td>
+                            <td>$2,678</td>
+                            <td>96%</td>
+                            <td><span style="color: var(--warning);">4.8/5</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Game Distributors</strong></td>
+                            <td>6</td>
+                            <td>$12,007</td>
+                            <td>$2,001</td>
+                            <td>95%</td>
+                            <td><span style="color: var(--warning);">4.3/5</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Purchase Insights</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                        <div><div style="font-weight: 600; color: var(--primary);">Cost Reduction</div><div style="font-size: 0.85rem; color: var(--secondary);">COGS -0.8%</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Cost of goods sold reduced through better supplier negotiations.</p>
+                </div>
+                <div style="padding: 20px; background: #f0f9f0; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-check-circle"></i></div>
+                        <div><div style="font-weight: 600; color: var(--success);">Supplier Performance</div><div style="font-size: 0.85rem; color: var(--secondary);">98% On-Time</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Excellent supplier performance with high on-time delivery rates.</p>
+                </div>
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div><div style="font-weight: 600; color: var(--warning);">Optimization</div><div style="font-size: 0.85rem; color: var(--secondary);">Bulk Purchasing</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Opportunity to increase bulk purchases for better pricing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxPurchase = document.getElementById('purchaseChart');
+            if (ctxPurchase) {
+                new Chart(ctxPurchase, {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 48', 'Week 49', 'Week 50', 'Week 51', 'Week 52'],
+                        datasets: [
+                            {
+                                label: 'Purchase Amount',
+                                data: [28456, 32458, 35892, 41245, 29594],
+                                borderColor: '#4e73df',
+                                backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                                borderWidth: 3,
+                                fill: true
+                            },
+                            {
+                                label: 'Purchase Orders',
+                                data: [8, 10, 12, 14, 10],
+                                borderColor: '#1cc88a',
+                                borderWidth: 3,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' }
+                            },
+                            y1: {
+                                beginAtZero: true,
+                                position: 'right',
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

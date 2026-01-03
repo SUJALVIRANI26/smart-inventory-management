@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Weekly Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>DealDeck Owner</span>
+        </div>
+
+        <div class="menu-category">Dashboard</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item active"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Weekly Business Report</h2>
+                <span>Week 50: Dec 10 - Dec 16, 2023 - 7-Day Performance Analysis</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Filters -->
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="weekSelect">Select Week</label>
+                    <input type="week" id="weekSelect" value="2023-W50">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="compareWeek">Compare With</label>
+                    <select id="compareWeek">
+                        <option value="previous">Previous Week</option>
+                        <option value="lastMonth">Same Week Last Month</option>
+                        <option value="lastYear">Same Week Last Year</option>
+                        <option value="average">4-Week Average</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="metricFocus">Focus Metric</label>
+                    <select id="metricFocus">
+                        <option value="revenue">Revenue</option>
+                        <option value="profit">Profit</option>
+                        <option value="orders">Orders</option>
+                        <option value="customers">Customers</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report">
+                        <i class="fa-solid fa-chart-simple"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Summary -->
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-money-bill-wave" style="font-size: 1.5rem; color: var(--primary);"></i>
+                    <div class="summary-value">$45,876</div>
+                    <div class="summary-label">Weekly Revenue</div>
+                    <span class="badge success">+8.4%</span>
+                </div>
+                
+                <div class="summary-item success">
+                    <i class="fa-solid fa-chart-line" style="font-size: 1.5rem; color: var(--success);"></i>
+                    <div class="summary-value">$18,350</div>
+                    <div class="summary-label">Weekly Profit</div>
+                    <span class="badge success">+12.2%</span>
+                </div>
+                
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-shopping-cart" style="font-size: 1.5rem; color: var(--warning);"></i>
+                    <div class="summary-value">245</div>
+                    <div class="summary-label">Weekly Orders</div>
+                    <span class="badge success">+5.7%</span>
+                </div>
+                
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-users" style="font-size: 1.5rem; color: var(--danger);"></i>
+                    <div class="summary-value">892</div>
+                    <div class="summary-label">New Customers</div>
+                    <span class="badge success">+3.3%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <!-- Weekly Trend Chart -->
+                <div>
+                    <h3 style="margin-bottom: 20px;">Daily Performance Trend</h3>
+                    <div style="height: 250px;">
+                        <canvas id="weeklyChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Week-over-Week Comparison -->
+                <div>
+                    <h3 style="margin-bottom: 20px;">Week-over-Week</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Revenue Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+8.4%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $45,876 vs $42,315
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Profit Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+12.2%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $18,350 vs $16,352
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Order Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+5.7%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                245 vs 232 orders
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Avg. Daily Revenue</span>
+                                <span style="font-weight: 600; color: var(--success);">+8.4%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $6,554 vs $6,045
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Breakdown -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Weekly Performance Breakdown</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Revenue</th>
+                            <th>Profit</th>
+                            <th>Orders</th>
+                            <th>Avg. Order Value</th>
+                            <th>New Customers</th>
+                            <th>Conversion Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Monday</strong><br>Dec 11</td>
+                            <td>$5,678</td>
+                            <td>$2,271</td>
+                            <td>32</td>
+                            <td>$177.44</td>
+                            <td>112</td>
+                            <td>3.5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tuesday</strong><br>Dec 12</td>
+                            <td>$6,245</td>
+                            <td>$2,498</td>
+                            <td>35</td>
+                            <td>$178.43</td>
+                            <td>125</td>
+                            <td>3.8%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wednesday</strong><br>Dec 13</td>
+                            <td>$5,892</td>
+                            <td>$2,357</td>
+                            <td>33</td>
+                            <td>$178.55</td>
+                            <td>118</td>
+                            <td>3.6%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thursday</strong><br>Dec 14</td>
+                            <td>$7,124</td>
+                            <td>$2,850</td>
+                            <td>38</td>
+                            <td>$187.47</td>
+                            <td>152</td>
+                            <td>4.1%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Friday</strong><br>Dec 15</td>
+                            <td>$8,924</td>
+                            <td>$3,570</td>
+                            <td>45</td>
+                            <td>$198.31</td>
+                            <td>178</td>
+                            <td>4.5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saturday</strong><br>Dec 16</td>
+                            <td>$7,345</td>
+                            <td>$2,938</td>
+                            <td>39</td>
+                            <td>$188.33</td>
+                            <td>147</td>
+                            <td>4.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sunday</strong><br>Dec 17</td>
+                            <td>$5,668</td>
+                            <td>$2,267</td>
+                            <td>31</td>
+                            <td>$182.84</td>
+                            <td>105</td>
+                            <td>3.4%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #f8f9fc;">
+                            <td style="font-weight: 600;">Weekly Total</td>
+                            <td style="font-weight: 700; color: var(--primary);">$45,876</td>
+                            <td style="font-weight: 700; color: var(--success);">$18,350</td>
+                            <td style="font-weight: 700; color: var(--warning);">245</td>
+                            <td style="font-weight: 700;">$187.25</td>
+                            <td style="font-weight: 700; color: var(--danger);">892</td>
+                            <td style="font-weight: 700; color: var(--info);">3.9%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- Category Performance -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Weekly Category Performance</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <!-- Top Categories -->
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Revenue by Category</h4>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Electronics</span>
+                                <span style="font-weight: 600;">$28,458</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 62%; height: 100%; background: var(--primary); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Furniture</span>
+                                <span style="font-weight: 600;">$8,749</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 19%; height: 100%; background: var(--success); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Games</span>
+                                <span style="font-weight: 600;">$4,250</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 9%; height: 100%; background: var(--warning); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Clothing</span>
+                                <span style="font-weight: 600;">$2,845</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 6%; height: 100%; background: var(--danger); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Other</span>
+                                <span style="font-weight: 600;">$1,574</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 3%; height: 100%; background: var(--info); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Growth -->
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Category Growth vs Last Week</h4>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Electronics</span>
+                                <span style="font-weight: 600; color: var(--success);">+12.4%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $28,458 vs $25,315
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Furniture</span>
+                                <span style="font-weight: 600; color: var(--success);">+8.7%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $8,749 vs $8,045
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Games</span>
+                                <span style="font-weight: 600; color: var(--danger);">-2.3%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $4,250 vs $4,352
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Clothing</span>
+                                <span style="font-weight: 600; color: var(--success);">+5.6%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $2,845 vs $2,694
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Insights -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Weekly Business Insights</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-calendar-star"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">Best Day</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Friday</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">
+                        Fridays consistently show highest revenue. Consider special promotions or extended hours on Fridays.
+                    </p>
+                </div>
+                
+                <div style="padding: 20px; background: #f0f9f0; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-chart-line-up"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--success);">Growth Trend</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">+8.4% WoW</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">
+                        Consistent weekly growth observed. Electronics category driving majority of growth at +12.4%.
+                    </p>
+                </div>
+                
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--warning);">Attention Needed</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Games Category</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">
+                        Games category showing -2.3% decline. Review pricing strategy and marketing for this segment.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Goals Progress -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Weekly Goals Progress</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Revenue Goals</h4>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Weekly Target</span>
+                            <span style="font-weight: 600; color: var(--primary);">$45,876 / $50,000</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: #eee; border-radius: 6px;">
+                            <div style="width: 91.8%; height: 100%; background: var(--primary); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Daily Average Target</span>
+                            <span style="font-weight: 600; color: var(--primary);">$6,554 / $7,143</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: #eee; border-radius: 6px;">
+                            <div style="width: 91.8%; height: 100%; background: var(--primary); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Operational Goals</h4>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Order Volume</span>
+                            <span style="font-weight: 600; color: var(--warning);">245 / 260</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: #eee; border-radius: 6px;">
+                            <div style="width: 94.2%; height: 100%; background: var(--warning); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>New Customers</span>
+                            <span style="font-weight: 600; color: var(--danger);">892 / 1,000</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: #eee; border-radius: 6px;">
+                            <div style="width: 89.2%; height: 100%; background: var(--danger); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Weekly Performance Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxWeekly = document.getElementById('weeklyChart');
+            if (ctxWeekly) {
+                new Chart(ctxWeekly, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [
+                            {
+                                label: 'Revenue ($)',
+                                data: [5678, 6245, 5892, 7124, 8924, 7345, 5668],
+                                backgroundColor: '#4e73df',
+                                borderRadius: 5,
+                                barPercentage: 0.6
+                            },
+                            {
+                                label: 'Profit ($)',
+                                data: [2271, 2498, 2357, 2850, 3570, 2938, 2267],
+                                backgroundColor: '#1cc88a',
+                                borderRadius: 5,
+                                barPercentage: 0.6
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                align: 'start',
+                                labels: { usePointStyle: true }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { borderDash: [5, 5], drawBorder: false },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

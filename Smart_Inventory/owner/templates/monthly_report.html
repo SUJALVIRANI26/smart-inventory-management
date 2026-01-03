@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Monthly Report</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>DealDeck Owner</span>
+        </div>
+
+        <div class="menu-category">Dashboard</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item active"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Monthly Business Report</h2>
+                <span>December 2023 - Complete Month Analysis</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="monthSelect">Select Month</label>
+                    <input type="month" id="monthSelect" value="2023-12">
+                </div>
+                <div class="filter-group">
+                    <label for="compareMonth">Compare With</label>
+                    <select id="compareMonth">
+                        <option value="previous">Previous Month</option>
+                        <option value="lastYear">Same Month Last Year</option>
+                        <option value="average">3-Month Average</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report"><i class="fa-solid fa-chart-simple"></i> Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <div class="summary-value">$245,876</div>
+                    <div class="summary-label">Monthly Revenue</div>
+                    <span class="badge success">+12.4%</span>
+                </div>
+                <div class="summary-item success">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="summary-value">$98,234</div>
+                    <div class="summary-label">Monthly Profit</div>
+                    <span class="badge success">+15.2%</span>
+                </div>
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <div class="summary-value">1,245</div>
+                    <div class="summary-label">Monthly Orders</div>
+                    <span class="badge success">+8.7%</span>
+                </div>
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-users"></i>
+                    <div class="summary-value">3,892</div>
+                    <div class="summary-label">New Customers</div>
+                    <span class="badge success">+5.3%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Monthly Revenue Trend</h3>
+                    <div style="height: 250px;"><canvas id="monthlyChart"></canvas></div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Month-over-Month</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Revenue Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+12.4%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">$245,876 vs $218,745</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Profit Margin</span>
+                                <span style="font-weight: 600; color: var(--success);">40%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Improved from 38%</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Avg. Daily Revenue</span>
+                                <span style="font-weight: 600; color: var(--success);">$7,931</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">31 days in month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Weekly Breakdown</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Revenue</th>
+                            <th>Profit</th>
+                            <th>Orders</th>
+                            <th>Avg. Order Value</th>
+                            <th>Growth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Week 48</td><td>$42,315</td><td>$16,926</td><td>232</td><td>$182.39</td><td><span class="badge success">+8.2%</span></td></tr>
+                        <tr><td>Week 49</td><td>$45,876</td><td>$18,350</td><td>245</td><td>$187.25</td><td><span class="badge success">+8.4%</span></td></tr>
+                        <tr><td>Week 50</td><td>$52,489</td><td>$20,996</td><td>278</td><td>$188.81</td><td><span class="badge success">+14.4%</span></td></tr>
+                        <tr><td>Week 51</td><td>$58,196</td><td>$23,278</td><td>305</td><td>$190.81</td><td><span class="badge success">+10.9%</span></td></tr>
+                        <tr><td>Week 52</td><td>$47,000</td><td>$18,800</td><td>248</td><td>$189.52</td><td><span class="badge warning">Estimate</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Monthly Insights</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-trophy"></i></div>
+                        <div><div style="font-weight: 600; color: var(--primary);">Best Week</div><div style="font-size: 0.85rem; color: var(--secondary);">Week 51</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Week 51 generated highest revenue at $58,196, +10.9% growth.</p>
+                </div>
+                <div style="padding: 20px; background: #f0f9f0; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-chart-line-up"></i></div>
+                        <div><div style="font-weight: 600; color: var(--success);">Consistent Growth</div><div style="font-size: 0.85rem; color: var(--secondary);">+12.4% MoM</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">All weeks showed positive growth, indicating strong momentum.</p>
+                </div>
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-bullseye"></i></div>
+                        <div><div style="font-weight: 600; color: var(--warning);">Target Achievement</div><div style="font-size: 0.85rem; color: var(--secondary);">98% of Goal</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Monthly revenue target nearly achieved at $245,876 vs $250,000 goal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxMonthly = document.getElementById('monthlyChart');
+            if (ctxMonthly) {
+                new Chart(ctxMonthly, {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 48', 'Week 49', 'Week 50', 'Week 51', 'Week 52'],
+                        datasets: [{
+                            label: 'Weekly Revenue',
+                            data: [42315, 45876, 52489, 58196, 47000],
+                            borderColor: '#4e73df',
+                            backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                grid: { borderDash: [5, 5] },
+                                ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' }
+                            },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

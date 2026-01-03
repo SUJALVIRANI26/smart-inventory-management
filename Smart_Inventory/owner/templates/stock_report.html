@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Stock Report</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><i class="fa-solid fa-chart-line"></i><span>DealDeck Owner</span></div>
+        <div class="menu-category">Dashboard</div>
+        <a href="../dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        <div class="menu-category">Business Insights</div>
+        <a href="../business/business_overview.html" class="menu-item"><i class="fa-solid fa-briefcase"></i> Business Overview</a>
+        <a href="../business/growth_chart.html" class="menu-item"><i class="fa-solid fa-rocket"></i> Growth Chart</a>
+        <a href="../business/revenue_forecast.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> Revenue Forecast</a>
+        <div class="menu-category">Inventory</div>
+        <a href="stock_report.html" class="menu-item active"><i class="fa-solid fa-boxes-stacked"></i> Stock Report</a>
+        <a href="top_products_report.html" class="menu-item"><i class="fa-solid fa-star"></i> Top Products</a>
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Inventory Stock Report</h2>
+                <span>Current Stock Status & Valuation</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="stockCategory">Category</label>
+                    <select id="stockCategory">
+                        <option>All Categories</option>
+                        <option>Electronics</option>
+                        <option>Furniture</option>
+                        <option>Games</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="stockStatus">Stock Status</label>
+                    <select id="stockStatus">
+                        <option>All Status</option>
+                        <option>In Stock</option>
+                        <option>Low Stock</option>
+                        <option>Out of Stock</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report"><i class="fa-solid fa-filter"></i> Apply Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-box"></i>
+                    <div class="summary-value">9,829</div>
+                    <div class="summary-label">Total Products</div>
+                    <span class="badge success">+5.2%</span>
+                </div>
+                <div class="summary-item success">
+                    <i class="fa-solid fa-warehouse"></i>
+                    <div class="summary-value">$612.9K</div>
+                    <div class="summary-label">Stock Value</div>
+                    <span class="badge success">+12.4%</span>
+                </div>
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    <div class="summary-value">24</div>
+                    <div class="summary-label">Low Stock Items</div>
+                    <span class="badge danger">+8</span>
+                </div>
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-ban"></i>
+                    <div class="summary-value">12</div>
+                    <div class="summary-label">Out of Stock</div>
+                    <span class="badge danger">+3</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Stock Value by Category</h3>
+                    <div style="height: 250px;"><canvas id="stockChart"></canvas></div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Stock Health Metrics</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Stock Turnover Ratio</span>
+                                <span style="font-weight: 600; color: var(--success);">4.2</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Healthy turnover rate</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Days Inventory Outstanding</span>
+                                <span style="font-weight: 600; color: var(--warning);">45 days</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Within optimal range</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Stock Coverage</span>
+                                <span style="font-weight: 600; color: var(--success);">60 days</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Adequate stock levels</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Slow Moving Items</span>
+                                <span style="font-weight: 600; color: var(--danger);">8%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Below 10% threshold</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Current Stock Status</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Current Stock</th>
+                            <th>Min Level</th>
+                            <th>Stock Value</th>
+                            <th>Status</th>
+                            <th>Days Since Last Sale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Wireless Headphones Pro</strong><br><small>SKU-001</small></td>
+                            <td>Electronics</td>
+                            <td>45 <small>units</small></td>
+                            <td>10</td>
+                            <td>$8,999.55</td>
+                            <td><span class="badge success">In Stock</span></td>
+                            <td>2 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Smart Watch Series 5</strong><br><small>SKU-003</small></td>
+                            <td>Electronics</td>
+                            <td>0 <small>units</small></td>
+                            <td>5</td>
+                            <td>$0.00</td>
+                            <td><span class="badge danger">Out of Stock</span></td>
+                            <td>1 day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gaming Chair Elite</strong><br><small>SKU-002</small></td>
+                            <td>Furniture</td>
+                            <td>12 <small>units</small></td>
+                            <td>15</td>
+                            <td>$4,199.88</td>
+                            <td><span class="badge warning">Low Stock</span></td>
+                            <td>5 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bluetooth Speaker</strong><br><small>SKU-004</small></td>
+                            <td>Electronics</td>
+                            <td>87 <small>units</small></td>
+                            <td>20</td>
+                            <td>$7,829.13</td>
+                            <td><span class="badge success">In Stock</span></td>
+                            <td>3 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mechanical Keyboard</strong><br><small>SKU-006</small></td>
+                            <td>Electronics</td>
+                            <td>8 <small>units</small></td>
+                            <td>10</td>
+                            <td>$1,199.92</td>
+                            <td><span class="badge warning">Low Stock</span></td>
+                            <td>7 days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Stock Insights & Recommendations</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #fee2e2; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--danger); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-exclamation-circle"></i></div>
+                        <div><div style="font-weight: 600; color: var(--danger);">Critical Alert</div><div style="font-size: 0.85rem; color: var(--secondary);">12 Items Out of Stock</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Immediate reorder needed for out-of-stock items to prevent lost sales.</p>
+                </div>
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-clock"></i></div>
+                        <div><div style="font-weight: 600; color: var(--warning);">Low Stock Warning</div><div style="font-size: 0.85rem; color: var(--secondary);">24 Items Below Min</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">24 products below minimum stock levels. Plan reorders this week.</p>
+                </div>
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div><div style="font-weight: 600; color: var(--primary);">Optimization Opportunity</div><div style="font-size: 0.85rem; color: var(--secondary);">Slow Moving Items</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">8% of inventory classified as slow-moving. Consider promotions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxStock = document.getElementById('stockChart');
+            if (ctxStock) {
+                new Chart(ctxStock, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Electronics', 'Furniture', 'Games', 'Clothing', 'Other'],
+                        datasets: [{
+                            data: [385000, 125000, 45000, 32000, 25900],
+                            backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e', '#e74a3b', '#36b9cc']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'right' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.label + ': $' + context.raw.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

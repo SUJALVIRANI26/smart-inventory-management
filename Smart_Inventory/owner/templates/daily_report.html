@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Daily Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+     <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>DealDeck Owner</span>
+        </div>
+
+        <div class="menu-category">Dashboard</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item active"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Daily Business Report</h2>
+                <span>Friday, December 15th 2023 - Performance Summary</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Filters -->
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="reportDate">Report Date</label>
+                    <input type="date" id="reportDate" value="2023-12-15">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="compareWith">Compare With</label>
+                    <select id="compareWith">
+                        <option value="yesterday">Yesterday</option>
+                        <option value="lastWeek">Last Week</option>
+                        <option value="lastMonth">Last Month</option>
+                        <option value="sameDayLastYear">Same Day Last Year</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="reportType">Report Type</label>
+                    <select id="reportType">
+                        <option value="summary">Summary Report</option>
+                        <option value="detailed">Detailed Report</option>
+                        <option value="executive">Executive Summary</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report">
+                        <i class="fa-solid fa-chart-simple"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Summary -->
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-money-bill-wave" style="font-size: 1.5rem; color: var(--primary);"></i>
+                    <div class="summary-value">$8,924</div>
+                    <div class="summary-label">Today's Revenue</div>
+                    <span class="badge success">+12.4%</span>
+                </div>
+                
+                <div class="summary-item success">
+                    <i class="fa-solid fa-chart-line" style="font-size: 1.5rem; color: var(--success);"></i>
+                    <div class="summary-value">$3,568</div>
+                    <div class="summary-label">Today's Profit</div>
+                    <span class="badge success">+15.2%</span>
+                </div>
+                
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-shopping-cart" style="font-size: 1.5rem; color: var(--warning);"></i>
+                    <div class="summary-value">45</div>
+                    <div class="summary-label">Orders Today</div>
+                    <span class="badge success">+8.7%</span>
+                </div>
+                
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-users" style="font-size: 1.5rem; color: var(--danger);"></i>
+                    <div class="summary-value">124</div>
+                    <div class="summary-label">New Customers</div>
+                    <span class="badge success">+5.3%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <!-- Daily Performance Chart -->
+                <div>
+                    <h3 style="margin-bottom: 20px;">Hourly Performance Trend</h3>
+                    <div style="height: 250px;">
+                        <canvas id="hourlyChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Comparison Stats -->
+                <div>
+                    <h3 style="margin-bottom: 20px;">Vs Yesterday</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Revenue</span>
+                                <span style="font-weight: 600; color: var(--success);">+12.4%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $8,924 vs $7,938
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Orders</span>
+                                <span style="font-weight: 600; color: var(--success);">+8.7%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                45 vs 41 orders
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Avg. Order Value</span>
+                                <span style="font-weight: 600; color: var(--success);">+3.4%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                $198.31 vs $191.66
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Conversion Rate</span>
+                                <span style="font-weight: 600; color: var(--danger);">-0.2%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">
+                                3.8% vs 4.0%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Transactions -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Today's Transactions</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Products</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:30 AM</td>
+                            <td><strong style="color: var(--primary);">ORD-2023-1045</strong></td>
+                            <td>John Smith</td>
+                            <td>3 items</td>
+                            <td>$1,245.99</td>
+                            <td><span class="badge success">Paid</span></td>
+                            <td><span class="badge success">Delivered</span></td>
+                        </tr>
+                        <tr>
+                            <td>11:45 AM</td>
+                            <td><strong style="color: var(--primary);">ORD-2023-1046</strong></td>
+                            <td>Sarah Johnson</td>
+                            <td>2 items</td>
+                            <td>$899.50</td>
+                            <td><span class="badge success">Paid</span></td>
+                            <td><span class="badge warning">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>02:15 PM</td>
+                            <td><strong style="color: var(--primary);">ORD-2023-1047</strong></td>
+                            <td>Mike Wilson</td>
+                            <td>5 items</td>
+                            <td>$2,345.75</td>
+                            <td><span class="badge warning">Pending</span></td>
+                            <td><span class="badge warning">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>03:30 PM</td>
+                            <td><strong style="color: var(--primary);">ORD-2023-1048</strong></td>
+                            <td>Emily Brown</td>
+                            <td>1 item</td>
+                            <td>$199.99</td>
+                            <td><span class="badge success">Paid</span></td>
+                            <td><span class="badge success">Shipped</span></td>
+                        </tr>
+                        <tr>
+                            <td>04:45 PM</td>
+                            <td><strong style="color: var(--primary);">ORD-2023-1049</strong></td>
+                            <td>Robert Taylor</td>
+                            <td>4 items</td>
+                            <td>$1,567.25</td>
+                            <td><span class="badge success">Paid</span></td>
+                            <td><span class="badge warning">Processing</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #f8f9fc;">
+                            <td colspan="4" style="text-align: right; font-weight: 600;">Daily Total:</td>
+                            <td colspan="3" style="font-weight: 700; color: var(--primary);">$6,258.48</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- Product Performance -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Today's Top Products</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <!-- Top Selling Products -->
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Best Sellers</h4>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 10px; background: #f8f9fc; border-radius: 10px;">
+                            <img src="https://via.placeholder.com/50" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">Wireless Headphones Pro</div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">12 sold • $2,399.88</div>
+                            </div>
+                            <span class="badge success">Top</span>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 10px; background: #f8f9fc; border-radius: 10px;">
+                            <img src="https://via.placeholder.com/50" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">Smart Watch Series 5</div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">8 sold • $2,399.92</div>
+                            </div>
+                            <span class="badge success">2nd</span>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 10px; background: #f8f9fc; border-radius: 10px;">
+                            <img src="https://via.placeholder.com/50" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">Gaming Chair Elite</div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">5 sold • $1,749.95</div>
+                            </div>
+                            <span class="badge warning">3rd</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Breakdown -->
+                <div>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">By Category</h4>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Electronics</span>
+                                <span style="font-weight: 600;">$4,258.45</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 68%; height: 100%; background: var(--primary); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Furniture</span>
+                                <span style="font-weight: 600;">$1,249.95</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 20%; height: 100%; background: var(--success); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Games</span>
+                                <span style="font-weight: 600;">$450.08</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 7%; height: 100%; background: var(--warning); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Other</span>
+                                <span style="font-weight: 600;">$300.00</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 5%; height: 100%; background: var(--danger); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Insights -->
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Daily Business Insights</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">Peak Hour</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">2:00 PM - 3:00 PM</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">
+                        Highest sales activity observed during afternoon hours. Consider increasing staffing during this period.
+                    </p>
+                </div>
+                
+                <div style="padding: 20px; background: #f0f9f0; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--success);">Top Performer</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Wireless Headphones</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">
+                        Electronics category outperformed others by 68%. Consider promoting similar products.
+                    </p>
+                </div>
+                
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--warning);">Opportunity</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Conversion Rate</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">
+                        Conversion rate slightly lower than yesterday. Review website optimization and checkout process.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Hourly Performance Chart for Daily Report
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxHourly = document.getElementById('hourlyChart');
+            if (ctxHourly) {
+                new Chart(ctxHourly, {
+                    type: 'line',
+                    data: {
+                        labels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM'],
+                        datasets: [
+                            {
+                                label: 'Revenue ($)',
+                                data: [450, 620, 890, 1200, 950, 1450, 1650, 1250, 850, 520],
+                                borderColor: '#4e73df',
+                                backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                                borderWidth: 3,
+                                fill: true,
+                                tension: 0.4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { borderDash: [5, 5], drawBorder: false },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value;
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

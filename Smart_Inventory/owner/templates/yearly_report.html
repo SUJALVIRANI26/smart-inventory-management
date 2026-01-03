@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Yearly Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<body>
+  <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>DealDeck Owner</span>
+        </div>
+
+        <div class="menu-category">Dashboard</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item active"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Yearly Business Report</h2>
+                <span>2023 Annual Performance Analysis</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="yearSelect">Select Year</label>
+                    <select id="yearSelect">
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="compareYear">Compare With</label>
+                    <select id="compareYear">
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>3-Year Average</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report"><i class="fa-solid fa-chart-simple"></i> Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <div class="summary-value">$2.45M</div>
+                    <div class="summary-label">Annual Revenue</div>
+                    <span class="badge success">+24.8%</span>
+                </div>
+                <div class="summary-item success">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="summary-value">$982K</div>
+                    <div class="summary-label">Annual Profit</div>
+                    <span class="badge success">+28.3%</span>
+                </div>
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <div class="summary-value">12,450</div>
+                    <div class="summary-label">Annual Orders</div>
+                    <span class="badge success">+18.7%</span>
+                </div>
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-users"></i>
+                    <div class="summary-value">45,892</div>
+                    <div class="summary-label">New Customers</div>
+                    <span class="badge success">+22.3%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Annual Revenue Trend</h3>
+                    <div style="height: 250px;"><canvas id="yearlyChart"></canvas></div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Year-over-Year Growth</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Revenue Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+24.8%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">$2.45M vs $1.96M</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Profit Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+28.3%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">$982K vs $765K</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Avg. Monthly Growth</span>
+                                <span style="font-weight: 600; color: var(--success);">+2.1%</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">Consistent monthly increase</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Monthly Performance 2023</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Revenue</th>
+                            <th>Profit</th>
+                            <th>Orders</th>
+                            <th>Growth</th>
+                            <th>Margin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Jan</td><td>$145,876</td><td>$58,350</td><td>745</td><td><span class="badge success">+12.4%</span></td><td>40%</td></tr>
+                        <tr><td>Feb</td><td>$158,924</td><td>$63,570</td><td>812</td><td><span class="badge success">+8.9%</span></td><td>40%</td></tr>
+                        <tr><td>Mar</td><td>$172,845</td><td>$69,138</td><td>892</td><td><span class="badge success">+8.8%</span></td><td>40%</td></tr>
+                        <tr><td>Apr</td><td>$185,924</td><td>$74,370</td><td>945</td><td><span class="badge success">+7.6%</span></td><td>40%</td></tr>
+                        <tr><td>May</td><td>$198,745</td><td>$79,498</td><td>1,012</td><td><span class="badge success">+6.9%</span></td><td>40%</td></tr>
+                        <tr><td>Jun</td><td>$212,489</td><td>$84,996</td><td>1,124</td><td><span class="badge success">+6.9%</span></td><td>40%</td></tr>
+                        <tr><td>Jul</td><td>$225,876</td><td>$90,350</td><td>1,198</td><td><span class="badge success">+6.3%</span></td><td>40%</td></tr>
+                        <tr><td>Aug</td><td>$238,924</td><td>$95,570</td><td>1,245</td><td><span class="badge success">+5.8%</span></td><td>40%</td></tr>
+                        <tr><td>Sep</td><td>$245,876</td><td>$98,350</td><td>1,278</td><td><span class="badge success">+2.9%</span></td><td>40%</td></tr>
+                        <tr><td>Oct</td><td>$258,924</td><td>$103,570</td><td>1,345</td><td><span class="badge success">+5.3%</span></td><td>40%</td></tr>
+                        <tr><td>Nov</td><td>$272,845</td><td>$109,138</td><td>1,412</td><td><span class="badge success">+5.4%</span></td><td>40%</td></tr>
+                        <tr><td>Dec</td><td>$285,876</td><td>$114,350</td><td>1,478</td><td><span class="badge success">+4.8%</span></td><td>40%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Annual Insights</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-trophy"></i></div>
+                        <div><div style="font-weight: 600; color: var(--primary);">Best Quarter</div><div style="font-size: 0.85rem; color: var(--secondary);">Q4 2023</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Q4 generated $817,645 revenue, +24.8% growth YoY.</p>
+                </div>
+                <div style="padding: 20px; background: #f0f9f0; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-chart-line-up"></i></div>
+                        <div><div style="font-weight: 600; color: var(--success);">Strong Growth</div><div style="font-size: 0.85rem; color: var(--secondary);">+24.8% YoY</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Consistent monthly growth throughout the year.</p>
+                </div>
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-bullseye"></i></div>
+                        <div><div style="font-weight: 600; color: var(--warning);">Target Achievement</div><div style="font-size: 0.85rem; color: var(--secondary);">102% of Goal</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Exceeded annual target of $2.4M by 2%.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxYearly = document.getElementById('yearlyChart');
+            if (ctxYearly) {
+                new Chart(ctxYearly, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                        datasets: [
+                            {
+                                label: '2023',
+                                data: [477645, 596158, 717645, 817645],
+                                backgroundColor: '#4e73df',
+                                borderRadius: 5
+                            },
+                            {
+                                label: '2022',
+                                data: [385000, 450000, 520000, 605000],
+                                backgroundColor: '#e0e7ff',
+                                borderRadius: 5
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { borderDash: [5, 5] },
+                                ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' }
+                            },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

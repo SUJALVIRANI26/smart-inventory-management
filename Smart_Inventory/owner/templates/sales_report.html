@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Sales Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>DealDeck Owner</span>
+        </div>
+
+        <div class="menu-category">Dashboard</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Overview</a>
+        
+        <div class="menu-category">Reports</div>
+        <a href="daily_report.html" class="menu-item"><i class="fa-solid fa-calendar-day"></i> Daily</a>
+        <a href="weekly_report.html" class="menu-item"><i class="fa-solid fa-calendar-week"></i> Weekly</a>
+        <a href="monthly_report.html" class="menu-item"><i class="fa-solid fa-calendar"></i> Monthly</a>
+        <a href="yearly_report.html" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Yearly</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="profit_loss_report.html" class="menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> P&L Report</a>
+        <a href="sales_report.html" class="menu-item active"><i class="fa-solid fa-chart-column"></i> Sales Report</a>
+        <a href="purchase_report.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase Report</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-crown"></i></div>
+            <h4>Premium Analytics</h4>
+            <p>Advanced insights & AI predictions</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Sales Performance Report</h2>
+                <span>December 2023 - Sales Analysis & Trends</span>
+            </div>
+            <div class="user-actions">
+                <div class="export-options">
+                    <button class="export-btn export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                    <button class="export-btn export-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                    <button class="export-btn export-print"><i class="fa-solid fa-print"></i> Print</button>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Business+Owner&background=random" alt="Owner">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Business Owner</div>
+                        <div style="font-size: 0.75rem; color: #888;">Executive Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="salesPeriod">Period</label>
+                    <select id="salesPeriod">
+                        <option>December 2023</option>
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Quarter 4 2023</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="salesChannel">Sales Channel</label>
+                    <select id="salesChannel">
+                        <option>All Channels</option>
+                        <option>Online Store</option>
+                        <option>Retail Store</option>
+                        <option>Wholesale</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>&nbsp;</label>
+                    <button class="btn-primary generate-report"><i class="fa-solid fa-chart-simple"></i> Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-summary">
+                <div class="summary-item primary">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <div class="summary-value">$245,876</div>
+                    <div class="summary-label">Total Sales</div>
+                    <span class="badge success">+12.4%</span>
+                </div>
+                <div class="summary-item success">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <div class="summary-value">1,245</div>
+                    <div class="summary-label">Total Orders</div>
+                    <span class="badge success">+8.7%</span>
+                </div>
+                <div class="summary-item warning">
+                    <i class="fa-solid fa-calculator"></i>
+                    <div class="summary-value">$197.45</div>
+                    <div class="summary-label">Avg Order Value</div>
+                    <span class="badge success">+3.4%</span>
+                </div>
+                <div class="summary-item danger">
+                    <i class="fa-solid fa-percent"></i>
+                    <div class="summary-value">3.9%</div>
+                    <div class="summary-label">Conversion Rate</div>
+                    <span class="badge warning">-0.2%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Sales Trend</h3>
+                    <div style="height: 250px;"><canvas id="salesChart"></canvas></div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px;">Sales Channel Mix</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Online Store</span>
+                                <span style="font-weight: 600;">65%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 65%; height: 100%; background: var(--primary); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Retail Store</span>
+                                <span style="font-weight: 600;">25%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 25%; height: 100%; background: var(--success); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Wholesale</span>
+                                <span style="font-weight: 600;">8%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 8%; height: 100%; background: var(--warning); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Other</span>
+                                <span style="font-weight: 600;">2%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                <div style="width: 2%; height: 100%; background: var(--danger); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Top Performing Products</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Units Sold</th>
+                            <th>Revenue</th>
+                            <th>Avg. Price</th>
+                            <th>Growth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge primary">1</span></td>
+                            <td><strong>Wireless Headphones Pro</strong></td>
+                            <td>Electronics</td>
+                            <td>245</td>
+                            <td>$48,999.55</td>
+                            <td>$199.99</td>
+                            <td><span class="badge success">+15.4%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge primary">2</span></td>
+                            <td><strong>Smart Watch Series 5</strong></td>
+                            <td>Electronics</td>
+                            <td>198</td>
+                            <td>$59,399.02</td>
+                            <td>$299.99</td>
+                            <td><span class="badge success">+12.8%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge primary">3</span></td>
+                            <td><strong>Gaming Chair Elite</strong></td>
+                            <td>Furniture</td>
+                            <td>124</td>
+                            <td>$43,399.76</td>
+                            <td>$349.99</td>
+                            <td><span class="badge success">+8.7%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge warning">4</span></td>
+                            <td><strong>Bluetooth Speaker</strong></td>
+                            <td>Electronics</td>
+                            <td>187</td>
+                            <td>$16,828.13</td>
+                            <td>$89.99</td>
+                            <td><span class="badge success">+5.4%</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge warning">5</span></td>
+                            <td><strong>Mechanical Keyboard</strong></td>
+                            <td>Electronics</td>
+                            <td>156</td>
+                            <td>$31,199.44</td>
+                            <td>$199.99</td>
+                            <td><span class="badge success">+3.2%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <h3 style="margin-bottom: 20px;">Sales Insights</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="padding: 20px; background: #f0f7ff; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-trophy"></i></div>
+                        <div><div style="font-weight: 600; color: var(--primary);">Top Category</div><div style="font-size: 0.85rem; color: var(--secondary);">Electronics</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Electronics generated 68% of total revenue, showing strong demand.</p>
+                </div>
+                <div style="padding: 20px; background: #f0f9f0; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-chart-line-up"></i></div>
+                        <div><div style="font-weight: 600; color: var(--success);">Growth Trend</div><div style="font-size: 0.85rem; color: var(--secondary);">+12.4% MoM</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Consistent month-over-month growth across all sales channels.</p>
+                </div>
+                <div style="padding: 20px; background: #fff8e1; border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-exclamation-triangle"></i></div>
+                        <div><div style="font-weight: 600; color: var(--warning);">Conversion Rate</div><div style="font-size: 0.85rem; color: var(--secondary);">3.9% (-0.2%)</div></div>
+                    </div>
+                    <p style="color: var(--dark); font-size: 0.9rem;">Conversion rate slightly declined. Review website optimization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxSales = document.getElementById('salesChart');
+            if (ctxSales) {
+                new Chart(ctxSales, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Week 48', 'Week 49', 'Week 50', 'Week 51', 'Week 52'],
+                        datasets: [
+                            {
+                                label: 'Revenue',
+                                data: [42315, 45876, 52489, 58196, 47000],
+                                backgroundColor: '#4e73df',
+                                borderRadius: 5
+                            },
+                            {
+                                label: 'Orders',
+                                data: [232, 245, 278, 305, 248],
+                                backgroundColor: '#1cc88a',
+                                borderRadius: 5,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
