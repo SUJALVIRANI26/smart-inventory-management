@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Edit Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+     <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Edit Product</h2>
+                <span>Wireless Headphones Pro</span>
+            </div>
+            <div class="user-actions">
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="https://via.placeholder.com/60" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover;">
+                    <div>
+                        <h3 style="margin-bottom: 5px;">Wireless Headphones Pro</h3>
+                        <p style="color: var(--secondary); font-size: 0.9rem;">SKU: SKU-001 | Last updated: Dec 15, 2023</p>
+                    </div>
+                </div>
+                <a href="product_list.html" style="color: var(--secondary); font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Products
+                </a>
+            </div>
+
+            <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" class="form-control" value="Wireless Headphones Pro" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sku">SKU *</label>
+                        <input type="text" id="sku" class="form-control" value="SKU-001" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" class="form-control" required>
+                            <option value="electronics" selected>Electronics</option>
+                            <option value="games">Games</option>
+                            <option value="furniture">Furniture</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="brand">Brand</label>
+                        <input type="text" id="brand" class="form-control" value="AudioTech">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price">Price *</label>
+                        <input type="number" id="price" class="form-control" value="199.99" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cost">Cost Price</label>
+                        <input type="number" id="cost" class="form-control" value="120.50" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">Current Quantity</label>
+                        <input type="number" id="quantity" class="form-control" value="45" readonly style="background: #f0f0f0;">
+                        <small style="color: var(--secondary); font-size: 0.8rem;">Use Stock Management to update quantity</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="minStock">Minimum Stock Level</label>
+                        <input type="number" id="minStock" class="form-control" value="10">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="supplier">Supplier</label>
+                        <select id="supplier" class="form-control">
+                            <option value="1" selected>Tech Supplies Inc.</option>
+                            <option value="2">Furniture World</option>
+                            <option value="3">Game Distributors</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="form-control">
+                            <option value="active" selected>Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="grid-column: span 2;">
+                    <label for="description">Product Description</label>
+                    <textarea id="description" class="form-control" rows="4">Premium wireless headphones with noise cancellation, 30-hour battery life, and crystal clear sound quality. Perfect for music lovers and professionals.</textarea>
+                </div>
+
+                <div class="form-group" style="grid-column: span 2;">
+                    <label>Product Images</label>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <div style="position: relative;">
+                            <img src="https://via.placeholder.com/100" style="width: 100px; height: 100px; border-radius: 8px; object-fit: cover;">
+                            <button type="button" style="position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;">×</button>
+                        </div>
+                        <div style="position: relative;">
+                            <img src="https://via.placeholder.com/100" style="width: 100px; height: 100px; border-radius: 8px; object-fit: cover;">
+                            <button type="button" style="position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;">×</button>
+                        </div>
+                        <div style="border: 2px dashed #ddd; border-radius: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                            <i class="fa-solid fa-plus" style="color: var(--secondary);"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; grid-column: span 2; padding-top: 20px; border-top: 1px solid #eee;">
+                    <div>
+                        <button type="button" class="btn-delete" style="padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer;">
+                            <i class="fa-solid fa-trash"></i> Delete Product
+                        </button>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="product_details.html" style="padding: 12px 30px; border: 1px solid #ddd; border-radius: 10px; color: var(--dark);">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

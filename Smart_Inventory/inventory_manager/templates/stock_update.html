@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Update Stock</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Update Stock</h2>
+                <span>Add or remove inventory quantities</span>
+            </div>
+            <div class="user-actions">
+                <a href="stock_list.html" style="color: var(--secondary); font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Stock
+                </a>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card col-span-3">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h3>Update Stock Quantity</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" style="padding: 10px 20px; background: var(--light); color: var(--dark); border-radius: 10px; border: none; cursor: pointer;">
+                            <i class="fa-solid fa-clock-rotate-left"></i> History
+                        </button>
+                        <button type="button" style="padding: 10px 20px; background: var(--light); color: var(--dark); border-radius: 10px; border: none; cursor: pointer;">
+                            <i class="fa-solid fa-arrows-rotate"></i> Bulk Update
+                        </button>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="productSelect">Select Product *</label>
+                            <select id="productSelect" class="form-control" required onchange="updateProductInfo()">
+                                <option value="">Search or select product...</option>
+                                <option value="1" selected>Wireless Headphones Pro (SKU-001)</option>
+                                <option value="2">Smart Watch Series 5 (SKU-003)</option>
+                                <option value="3">Gaming Chair Elite (SKU-002)</option>
+                                <option value="4">Bluetooth Speaker (SKU-004)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentStock">Current Stock</label>
+                            <input type="number" id="currentStock" class="form-control" value="45" readonly style="background: #f0f0f0;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="updateType">Update Type *</label>
+                            <select id="updateType" class="form-control" required>
+                                <option value="add">Add Stock (Increase)</option>
+                                <option value="remove">Remove Stock (Decrease)</option>
+                                <option value="set">Set to Specific Quantity</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" id="quantity" class="form-control" placeholder="Enter quantity" required min="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reason">Reason *</label>
+                            <select id="reason" class="form-control" required>
+                                <option value="">Select reason...</option>
+                                <option value="purchase">Purchase Order Received</option>
+                                <option value="sale">Sales Order Fulfilled</option>
+                                <option value="return">Customer Return</option>
+                                <option value="damage">Damaged Goods</option>
+                                <option value="adjustment">Stock Adjustment</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reference">Reference Number</label>
+                            <input type="text" id="reference" class="form-control" placeholder="e.g., PO-2023-001">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" class="form-control" rows="3" placeholder="Add any additional notes..."></textarea>
+                    </div>
+
+                    <!-- Product Info Display -->
+                    <div style="grid-column: span 2; background: #f8f9fc; border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <img src="https://via.placeholder.com/80" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <h4 style="margin-bottom: 5px;">Wireless Headphones Pro</h4>
+                                <div style="display: flex; gap: 20px; margin-bottom: 10px;">
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: var(--secondary);">SKU</div>
+                                        <div style="font-weight: 600;">SKU-001</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: var(--secondary);">Category</div>
+                                        <div style="font-weight: 600;">Electronics</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: var(--secondary);">Price</div>
+                                        <div style="font-weight: 600;">$199.99</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: var(--secondary);">Min Stock</div>
+                                        <div style="font-weight: 600;">10 units</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="font-size: 0.85rem; color: var(--secondary);">Stock Status:</div>
+                                    <span class="badge success">In Stock (45 units)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculation Preview -->
+                    <div style="grid-column: span 2; background: #f0f7ff; border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+                        <h4 style="margin-bottom: 15px;">Update Preview</h4>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
+                            <div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">Current Stock</div>
+                                <div style="font-size: 1.5rem; font-weight: 700;">45</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">Update Type</div>
+                                <div style="font-size: 1.2rem; font-weight: 700; color: var(--success);">+ Add</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">Quantity</div>
+                                <div style="font-size: 1.5rem; font-weight: 700;">25</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.85rem; color: var(--secondary);">New Stock</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">70</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px; grid-column: span 2;">
+                        <a href="stock_list.html" style="padding: 12px 30px; border: 1px solid #ddd; border-radius: 10px; color: var(--dark);">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-check"></i> Update Stock
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Recent Updates -->
+            <div class="card col-span-1">
+                <h3 style="margin-bottom: 20px;">Recent Updates</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Wireless Headphones</div>
+                            <span style="color: var(--success); font-weight: 600;">+25</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Purchase Order • Dec 15</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Smart Watch</div>
+                            <span style="color: var(--danger); font-weight: 600;">-3</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Sales Order • Dec 14</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Gaming Chair</div>
+                            <span style="color: var(--success); font-weight: 600;">+5</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Adjustment • Dec 13</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Bluetooth Speaker</div>
+                            <span style="color: var(--success); font-weight: 600;">+50</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Purchase Order • Dec 12</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="stock_movement.html" style="display: block; text-align: center; padding: 10px; background: var(--light); color: var(--dark); border-radius: 10px;">
+                        <i class="fa-solid fa-history"></i> View All History
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function updateProductInfo() {
+            // This function would update product info based on selection
+            console.log('Product selection changed');
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

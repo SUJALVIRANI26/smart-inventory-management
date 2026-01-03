@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Stock Adjustment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Stock Adjustment</h2>
+                <span>Correct inventory discrepancies</span>
+            </div>
+            <div class="user-actions">
+                <a href="stock_list.html" style="color: var(--secondary); font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Stock
+                </a>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div>
+                    <h3>Bulk Stock Adjustment</h3>
+                    <p style="color: var(--secondary); margin-top: 5px;">
+                        Use this form to adjust multiple products at once. Upload a CSV file or enter manually.
+                    </p>
+                </div>
+                <div>
+                    <button type="button" style="padding: 10px 20px; background: var(--light); color: var(--dark); border-radius: 10px; border: none; cursor: pointer; margin-right: 10px;">
+                        <i class="fa-solid fa-download"></i> Download Template
+                    </button>
+                    <button type="button" style="padding: 10px 20px; background: var(--primary); color: white; border-radius: 10px; border: none; cursor: pointer;">
+                        <i class="fa-solid fa-file-import"></i> Import CSV
+                    </button>
+                </div>
+            </div>
+
+            <div style="border: 2px dashed #ddd; border-radius: 15px; padding: 40px; text-align: center; margin-bottom: 30px;">
+                <i class="fa-solid fa-file-csv" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px;"></i>
+                <h4 style="margin-bottom: 10px;">Upload Adjustment File</h4>
+                <p style="color: var(--secondary); margin-bottom: 20px;">
+                    Drag and drop your CSV file here, or click to browse
+                </p>
+                <button type="button" style="padding: 10px 25px; background: var(--light); color: var(--dark); border-radius: 8px; border: none; cursor: pointer;">
+                    Browse Files
+                </button>
+                <p style="font-size: 0.85rem; color: var(--secondary); margin-top: 15px;">
+                    File should contain columns: SKU, Adjustment_Quantity, Reason, Notes
+                </p>
+            </div>
+
+            <h4 style="margin-bottom: 20px;">Or Enter Adjustments Manually</h4>
+            
+            <div class="table-container" style="margin-bottom: 20px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>Product</th>
+                            <th>Current Stock</th>
+                            <th>Adjustment Type</th>
+                            <th>Quantity</th>
+                            <th>New Stock</th>
+                            <th>Reason</th>
+                            <th>Notes</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Wireless Headphones Pro</div>
+                                        <div style="font-size: 0.8rem; color: #888;">SKU-001</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>45</td>
+                            <td>
+                                <select style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                    <option value="increase">Increase</option>
+                                    <option value="decrease">Decrease</option>
+                                    <option value="set">Set to</option>
+                                </select>
+                            </td>
+                            <td><input type="number" value="5" style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 80px;"></td>
+                            <td>50</td>
+                            <td>
+                                <select style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                    <option value="count">Physical Count</option>
+                                    <option value="damage">Damaged Goods</option>
+                                    <option value="theft">Theft/Loss</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </td>
+                            <td><input type="text" placeholder="Notes" style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 100%;"></td>
+                            <td>
+                                <button style="color: var(--danger); background: none; border: none; cursor: pointer;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Smart Watch Series 5</div>
+                                        <div style="font-size: 0.8rem; color: #888;">SKU-003</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>0</td>
+                            <td>
+                                <select style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                    <option value="increase">Increase</option>
+                                    <option value="decrease">Decrease</option>
+                                    <option value="set" selected>Set to</option>
+                                </select>
+                            </td>
+                            <td><input type="number" value="10" style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 80px;"></td>
+                            <td>10</td>
+                            <td>
+                                <select style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                    <option value="count" selected>Physical Count</option>
+                                    <option value="damage">Damaged Goods</option>
+                                    <option value="theft">Theft/Loss</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </td>
+                            <td><input type="text" placeholder="Found additional stock" style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; width: 100%;"></td>
+                            <td>
+                                <button style="color: var(--danger); background: none; border: none; cursor: pointer;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button type="button" style="padding: 10px 20px; background: var(--light); color: var(--dark); border-radius: 10px; border: none; cursor: pointer;">
+                    <i class="fa-solid fa-plus"></i> Add Another Product
+                </button>
+            </div>
+
+            <div style="background: #f8f9fc; border-radius: 15px; padding: 20px; margin-bottom: 30px;">
+                <h4 style="margin-bottom: 15px;">Adjustment Summary</h4>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Total Products</div>
+                        <div style="font-size: 1.5rem; font-weight: 700;">2</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Total Increase</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">+15</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Total Decrease</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--danger);">0</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Net Change</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">+15</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid #eee;">
+                <div>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" checked>
+                        <span>Send notification to warehouse manager</span>
+                    </label>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <a href="stock_list.html" style="padding: 12px 30px; border: 1px solid #ddd; border-radius: 10px; color: var(--dark);">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn-primary">
+                        <i class="fa-solid fa-check"></i> Apply Adjustments
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

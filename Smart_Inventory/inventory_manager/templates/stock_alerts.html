@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Stock Alerts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Stock Alerts</h2>
+                <span>Monitor inventory thresholds</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search alerts...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-bottom: 25px;">
+            <!-- Alert Summary Cards -->
+            <div class="card stat-card blue col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <span class="badge danger">Critical</span>
+                </div>
+                <div>
+                    <div class="stat-label">Critical Alerts</div>
+                    <div class="stat-val">3</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-exclamation"></i></div>
+                    <span class="badge warning">Warning</span>
+                </div>
+                <div>
+                    <div class="stat-label">Warning Alerts</div>
+                    <div class="stat-val">8</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-ban"></i></div>
+                    <span class="badge danger">12</span>
+                </div>
+                <div>
+                    <div class="stat-label">Out of Stock</div>
+                    <div class="stat-val">12</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-clock"></i></div>
+                    <span class="badge warning">24</span>
+                </div>
+                <div>
+                    <div class="stat-label">Low Stock</div>
+                    <div class="stat-val">24</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Critical Alerts -->
+            <div class="card col-span-2">
+                <div class="chart-header">
+                    <h3>Critical Alerts (Action Required)</h3>
+                    <span class="badge danger">3 Items</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="padding: 20px; background: #fee2e2; border-radius: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <img src="https://via.placeholder.com/50" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">
+                                <div>
+                                    <div style="font-weight: 700; font-size: 1.1rem;">Smart Watch Series 5</div>
+                                    <div style="font-size: 0.85rem; color: #991b1b;">SKU: SKU-003 | Category: Electronics</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--danger);">0</div>
+                                <div style="font-size: 0.85rem; color: #991b1b;">Current Stock</div>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="font-weight: 600; color: #991b1b; margin-bottom: 5px;">
+                                        <i class="fa-solid fa-circle-exclamation"></i> OUT OF STOCK
+                                    </div>
+                                    <div style="font-size: 0.9rem; color: #991b1b;">
+                                        Minimum stock level: 5 units • Last sold: Dec 14, 2023
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="purchase_order_create.html" style="padding: 10px 20px; background: var(--danger); color: white; border-radius: 10px;">
+                                        <i class="fa-solid fa-cart-plus"></i> Create Purchase Order
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 20px; background: #fee2e2; border-radius: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <img src="https://via.placeholder.com/50" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">
+                                <div>
+                                    <div style="font-weight: 700; font-size: 1.1rem;">Wireless Earbuds Pro</div>
+                                    <div style="font-size: 0.85rem; color: #991b1b;">SKU: SKU-005 | Category: Electronics</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--danger);">2</div>
+                                <div style="font-size: 0.85rem; color: #991b1b;">Current Stock</div>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="font-weight: 600; color: #991b1b; margin-bottom: 5px;">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> CRITICALLY LOW
+                                    </div>
+                                    <div style="font-size: 0.9rem; color: #991b1b;">
+                                        Minimum stock level: 10 units • Average monthly sales: 25 units
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="purchase_order_create.html" style="padding: 10px 20px; background: var(--danger); color: white; border-radius: 10px;">
+                                        <i class="fa-solid fa-cart-plus"></i> Reorder Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning Alerts -->
+            <div class="card col-span-1">
+                <div class="chart-header">
+                    <h3>Warning Alerts</h3>
+                    <span class="badge warning">8 Items</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Gaming Chair Elite</div>
+                            <span class="badge warning">12</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #92400e;">Below minimum (15 units)</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Mechanical Keyboard</div>
+                            <span class="badge warning">8</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #92400e;">Approaching minimum (10 units)</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">4K Monitor</div>
+                            <span class="badge warning">15</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #92400e;">Below minimum (20 units)</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Gaming Mouse</div>
+                            <span class="badge warning">22</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #92400e;">Approaching minimum (25 units)</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="stock_list.html" style="display: block; text-align: center; padding: 10px; background: var(--light); color: var(--dark); border-radius: 10px;">
+                        <i class="fa-solid fa-list"></i> View All Low Stock
+                    </a>
+                </div>
+            </div>
+
+            <!-- Alert Settings -->
+            <div class="card col-span-3">
+                <div class="chart-header">
+                    <h3>Alert Settings & Configuration</h3>
+                    <button style="padding: 8px 15px; background: var(--primary); color: white; border-radius: 8px; border: none; cursor: pointer;">
+                        <i class="fa-solid fa-save"></i> Save Settings
+                    </button>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+                    <div>
+                        <h4 style="margin-bottom: 15px;">Notification Settings</h4>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="checkbox" checked>
+                                <span>Email notifications for critical alerts</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="checkbox" checked>
+                                <span>Dashboard notifications for all alerts</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="checkbox">
+                                <span>SMS notifications for out-of-stock items</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="checkbox" checked>
+                                <span>Weekly alert summary report</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="margin-bottom: 15px;">Threshold Configuration</h4>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Critical Alert Threshold</label>
+                                <input type="number" value="5" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                <small style="color: var(--secondary);">Items below this quantity trigger critical alerts</small>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Warning Alert Threshold</label>
+                                <input type="number" value="15" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd; width: 100%;">
+                                <small style="color: var(--secondary);">Items below this quantity trigger warning alerts</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <h4 style="margin-bottom: 15px;">Alert History (Last 7 Days)</h4>
+                    <div class="table-container">
+                        <table style="font-size: 0.85rem;">
+                            <thead>
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Product</th>
+                                    <th>Alert Type</th>
+                                    <th>Triggered By</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dec 15, 2023 10:30</td>
+                                    <td>Smart Watch Series 5</td>
+                                    <td><span class="badge danger">Out of Stock</span></td>
+                                    <td>Stock Update</td>
+                                    <td><span class="badge warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Dec 14, 2023 15:45</td>
+                                    <td>Gaming Chair Elite</td>
+                                    <td><span class="badge warning">Low Stock</span></td>
+                                    <td>Sales Order</td>
+                                    <td><span class="badge success">Resolved</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Dec 13, 2023 09:15</td>
+                                    <td>Wireless Earbuds Pro</td>
+                                    <td><span class="badge danger">Critical</span></td>
+                                    <td>Threshold</td>
+                                    <td><span class="badge warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Dec 12, 2023 14:20</td>
+                                    <td>4K Monitor</td>
+                                    <td><span class="badge warning">Low Stock</span></td>
+                                    <td>Threshold</td>
+                                    <td><span class="badge success">Resolved</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

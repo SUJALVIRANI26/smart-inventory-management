@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Delete Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .delete-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .delete-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Delete Product</h2>
+                <span>Confirm deletion</span>
+            </div>
+            <div class="user-actions">
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="delete-modal">
+            <div class="delete-content">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div style="width: 60px; height: 60px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fa-solid fa-exclamation" style="color: var(--danger); font-size: 1.5rem;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">Delete Product?</h3>
+                    <p style="color: var(--secondary); line-height: 1.6;">
+                        Are you sure you want to delete <strong>"Wireless Headphones Pro"</strong>? 
+                        This action cannot be undone and all product data will be permanently removed.
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px;">
+                    <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <img src="https://via.placeholder.com/50" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <div style="font-weight: 600;">Wireless Headphones Pro</div>
+                            <div style="font-size: 0.85rem; color: var(--secondary);">SKU: SKU-001 | Stock: 45 units</div>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <i class="fa-solid fa-triangle-exclamation" style="color: var(--warning);"></i>
+                            <strong style="font-size: 0.9rem;">Warning</strong>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--dark); margin: 0;">
+                            This product has 12 associated purchase orders and 45 units in stock. 
+                            Deleting it will also remove all related stock history.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <a href="product_list.html" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; color: var(--dark); text-align: center;">
+                        Cancel
+                    </a>
+                    <a href="product_list.html" style="flex: 1; padding: 12px; background: var(--danger); color: white; border-radius: 10px; text-align: center;">
+                        <i class="fa-solid fa-trash"></i> Delete Permanently
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 100px;">
+            <p style="color: var(--secondary);">Redirecting to delete confirmation...</p>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Stock Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Stock Management</h2>
+                <span>Monitor and manage inventory levels</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search stock...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-bottom: 25px;">
+            <!-- Stock Overview Cards -->
+            <div class="card stat-card blue col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-box"></i></div>
+                    <span class="badge success">+5.2%</span>
+                </div>
+                <div>
+                    <div class="stat-label">Total Products</div>
+                    <div class="stat-val">9,829</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-warehouse"></i></div>
+                    <span class="badge success">+12.4%</span>
+                </div>
+                <div>
+                    <div class="stat-label">Total Stock Value</div>
+                    <div class="stat-val">$612.9K</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-exclamation-triangle"></i></div>
+                    <span class="badge danger">8</span>
+                </div>
+                <div>
+                    <div class="stat-label">Low Stock Items</div>
+                    <div class="stat-val">24</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-ban"></i></div>
+                    <span class="badge danger">3</span>
+                </div>
+                <div>
+                    <div class="stat-label">Out of Stock</div>
+                    <div class="stat-val">12</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Stock Overview</h3>
+                <div style="display: flex; gap: 10px;">
+                    <a href="stock_update.html" class="action-btn" style="background: var(--primary); color: white; padding: 10px 15px;">
+                        <i class="fa-solid fa-plus"></i> Update Stock
+                    </a>
+                    <a href="stock_adjustment.html" class="action-btn" style="background: var(--light); color: var(--dark); padding: 10px 15px;">
+                        <i class="fa-solid fa-sliders"></i> Adjust Stock
+                    </a>
+                    <a href="stock_alerts.html" class="action-btn" style="background: #fff8e1; color: var(--warning); padding: 10px 15px;">
+                        <i class="fa-solid fa-bell"></i> View Alerts
+                    </a>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>SKU</th>
+                            <th>Category</th>
+                            <th>Current Stock</th>
+                            <th>Min Level</th>
+                            <th>Value</th>
+                            <th>Status</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Wireless Headphones Pro</div>
+                                        <div style="font-size: 0.8rem; color: #888;">AudioTech</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>SKU-001</td>
+                            <td>Electronics</td>
+                            <td>
+                                <div>45 units</div>
+                                <div style="width: 100%; height: 4px; background: #eee; border-radius: 2px; margin-top: 4px;">
+                                    <div style="width: 75%; height: 100%; background: var(--success); border-radius: 2px;"></div>
+                                </div>
+                            </td>
+                            <td>10</td>
+                            <td>$8,999.55</td>
+                            <td><span class="badge success">In Stock</span></td>
+                            <td>Dec 15, 2023</td>
+                            <td>
+                                <a href="stock_update.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i> Update
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Smart Watch Series 5</div>
+                                        <div style="font-size: 0.8rem; color: #888;">TechWear</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>SKU-003</td>
+                            <td>Electronics</td>
+                            <td>
+                                <div>0 units</div>
+                                <div style="width: 100%; height: 4px; background: #eee; border-radius: 2px; margin-top: 4px;">
+                                    <div style="width: 0%; height: 100%; background: var(--danger); border-radius: 2px;"></div>
+                                </div>
+                            </td>
+                            <td>5</td>
+                            <td>$0.00</td>
+                            <td><span class="badge danger">Out of Stock</span></td>
+                            <td>Dec 14, 2023</td>
+                            <td>
+                                <a href="stock_update.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i> Update
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Gaming Chair Elite</div>
+                                        <div style="font-size: 0.8rem; color: #888;">ComfortPlus</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>SKU-002</td>
+                            <td>Furniture</td>
+                            <td>
+                                <div>12 units</div>
+                                <div style="width: 100%; height: 4px; background: #eee; border-radius: 2px; margin-top: 4px;">
+                                    <div style="width: 40%; height: 100%; background: var(--warning); border-radius: 2px;"></div>
+                                </div>
+                            </td>
+                            <td>15</td>
+                            <td>$4,199.88</td>
+                            <td><span class="badge warning">Low Stock</span></td>
+                            <td>Dec 13, 2023</td>
+                            <td>
+                                <a href="stock_update.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i> Update
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Bluetooth Speaker</div>
+                                        <div style="font-size: 0.8rem; color: #888;">SoundMax</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>SKU-004</td>
+                            <td>Electronics</td>
+                            <td>
+                                <div>87 units</div>
+                                <div style="width: 100%; height: 4px; background: #eee; border-radius: 2px; margin-top: 4px;">
+                                    <div style="width: 95%; height: 100%; background: var(--success); border-radius: 2px;"></div>
+                                </div>
+                            </td>
+                            <td>20</td>
+                            <td>$7,829.13</td>
+                            <td><span class="badge success">In Stock</span></td>
+                            <td>Dec 12, 2023</td>
+                            <td>
+                                <a href="stock_update.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i> Update
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                <div style="color: var(--secondary); font-size: 0.85rem;">
+                    Showing 1-10 of 156 products
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Previous</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: var(--primary); color: white;">1</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">2</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">3</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Stock Movement -->
+            <div class="card col-span-2">
+                <div class="chart-header">
+                    <h3>Recent Stock Movement</h3>
+                    <a href="stock_movement.html" style="color: var(--primary); font-size: 0.9rem;">View All</a>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Type</th>
+                                <th>Quantity</th>
+                                <th>Reference</th>
+                                <th>User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dec 15, 2023</td>
+                                <td>Wireless Headphones Pro</td>
+                                <td><span class="badge success">Purchase</span></td>
+                                <td>+25</td>
+                                <td>PO-2023-001</td>
+                                <td>Ferra Alexandra</td>
+                            </tr>
+                            <tr>
+                                <td>Dec 14, 2023</td>
+                                <td>Smart Watch Series 5</td>
+                                <td><span class="badge danger">Sale</span></td>
+                                <td>-3</td>
+                                <td>SO-2023-045</td>
+                                <td>System</td>
+                            </tr>
+                            <tr>
+                                <td>Dec 13, 2023</td>
+                                <td>Gaming Chair Elite</td>
+                                <td><span class="badge" style="background: #e0e7ff; color: var(--primary);">Adjustment</span></td>
+                                <td>+5</td>
+                                <td>ADJ-2023-012</td>
+                                <td>John Doe</td>
+                            </tr>
+                            <tr>
+                                <td>Dec 12, 2023</td>
+                                <td>Bluetooth Speaker</td>
+                                <td><span class="badge success">Purchase</span></td>
+                                <td>+50</td>
+                                <td>PO-2023-002</td>
+                                <td>Ferra Alexandra</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Stock Alerts -->
+            <div class="card col-span-1">
+                <div class="chart-header">
+                    <h3>Stock Alerts</h3>
+                    <span class="badge danger">3 Critical</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                    <div style="padding: 15px; background: #fee2e2; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Smart Watch Series 5</div>
+                            <span class="badge danger">0</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #991b1b;">Out of stock! Reorder immediately.</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Gaming Chair Elite</div>
+                            <span class="badge warning">12</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #92400e;">Below minimum stock level (15).</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #fff8e1; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Wireless Earbuds</div>
+                            <span class="badge warning">8</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #92400e;">Approaching minimum stock (10).</div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #d1fae5; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">Bluetooth Speaker</div>
+                            <span class="badge success">87</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #065f46;">Healthy stock level.</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <a href="stock_alerts.html" style="display: block; padding: 10px; background: var(--light); color: var(--dark); border-radius: 10px;">
+                        <i class="fa-solid fa-bell"></i> View All Alerts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Suppliers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+     <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Suppliers</h2>
+                <span>Manage your supplier network</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search suppliers...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-bottom: 25px;">
+            <!-- Supplier Overview Cards -->
+            <div class="card stat-card blue col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+                    <span class="badge success">+2.1%</span>
+                </div>
+                <div>
+                    <div class="stat-label">Total Suppliers</div>
+                    <div class="stat-val">48</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-star"></i></div>
+                    <span class="badge success">4.8</span>
+                </div>
+                <div>
+                    <div class="stat-label">Avg. Rating</div>
+                    <div class="stat-val">4.8/5.0</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <span class="badge success">+15.2%</span>
+                </div>
+                <div>
+                    <div class="stat-label">Active Orders</div>
+                    <div class="stat-val">12</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <span class="badge warning">$245.8K</span>
+                </div>
+                <div>
+                    <div class="stat-label">Total Spend</div>
+                    <div class="stat-val">$245.8K</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin-bottom: 5px;">All Suppliers</h3>
+                    <p style="color: var(--secondary); font-size: 0.9rem;">Total: 48 suppliers | Active: 42 | Inactive: 6</p>
+                </div>
+                <div>
+                    <a href="supplier_add.html" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-plus"></i> Add Supplier
+                    </a>
+                    <button style="padding: 10px 15px; background: var(--light); color: var(--dark); border-radius: 10px; border: none; margin-left: 10px; cursor: pointer;">
+                        <i class="fa-solid fa-filter"></i> Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Suppliers List -->
+            <div class="card col-span-3">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">#</th>
+                                <th>Supplier</th>
+                                <th>Contact</th>
+                                <th>Category</th>
+                                <th>Total Orders</th>
+                                <th>Total Spend</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                                            TS
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600;">Tech Supplies Inc.</div>
+                                            <div style="font-size: 0.8rem; color: #888;">ID: SUP-001</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: 600;">John Smith</div>
+                                    <div style="font-size: 0.8rem; color: #888;">john@techsupplies.com</div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>
+                                    <div>45 orders</div>
+                                    <div style="font-size: 0.8rem; color: #888;">Last: Dec 10, 2023</div>
+                                </td>
+                                <td>$124,850</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 5px;">
+                                        <i class="fa-solid fa-star" style="color: var(--warning);"></i>
+                                        <span style="font-weight: 600;">4.9</span>
+                                        <span style="font-size: 0.8rem; color: #888;">(128)</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge success">Active</span></td>
+                                <td>
+                                    <a href="supplier_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="supplier_edit.html" class="action-btn btn-edit">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    <a href="#" class="action-btn" style="background: #fee2e2; color: var(--danger);">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                                            SD
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600;">SoundMax Distributors</div>
+                                            <div style="font-size: 0.8rem; color: #888;">ID: SUP-002</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: 600;">Sarah Johnson</div>
+                                    <div style="font-size: 0.8rem; color: #888;">sarah@soundmax.com</div>
+                                </td>
+                                <td>Audio Equipment</td>
+                                <td>
+                                    <div>32 orders</div>
+                                    <div style="font-size: 0.8rem; color: #888;">Last: Dec 8, 2023</div>
+                                </td>
+                                <td>$89,450</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 5px;">
+                                        <i class="fa-solid fa-star" style="color: var(--warning);"></i>
+                                        <span style="font-weight: 600;">4.7</span>
+                                        <span style="font-size: 0.8rem; color: #888;">(95)</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge success">Active</span></td>
+                                <td>
+                                    <a href="supplier_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="supplier_edit.html" class="action-btn btn-edit">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    <a href="#" class="action-btn" style="background: #fee2e2; color: var(--danger);">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 40px; height: 40px; background: var(--danger); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                                            FW
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600;">Furniture World</div>
+                                            <div style="font-size: 0.8rem; color: #888;">ID: SUP-003</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: 600;">Mike Wilson</div>
+                                    <div style="font-size: 0.8rem; color: #888;">mike@furnitureworld.com</div>
+                                </td>
+                                <td>Furniture</td>
+                                <td>
+                                    <div>28 orders</div>
+                                    <div style="font-size: 0.8rem; color: #888;">Last: Dec 1, 2023</div>
+                                </td>
+                                <td>$67,890</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 5px;">
+                                        <i class="fa-solid fa-star" style="color: var(--warning);"></i>
+                                        <span style="font-weight: 600;">4.5</span>
+                                        <span style="font-size: 0.8rem; color: #888;">(72)</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge warning">Limited</span></td>
+                                <td>
+                                    <a href="supplier_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="supplier_edit.html" class="action-btn btn-edit">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    <a href="#" class="action-btn" style="background: #fee2e2; color: var(--danger);">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 40px; height: 40px; background: var(--warning); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                                            TW
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600;">TechWear Solutions</div>
+                                            <div style="font-size: 0.8rem; color: #888;">ID: SUP-004</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: 600;">Emily Brown</div>
+                                    <div style="font-size: 0.8rem; color: #888;">emily@techwear.com</div>
+                                </td>
+                                <td>Wearables</td>
+                                <td>
+                                    <div>21 orders</div>
+                                    <div style="font-size: 0.8rem; color: #888;">Last: Nov 25, 2023</div>
+                                </td>
+                                <td>$45,670</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 5px;">
+                                        <i class="fa-solid fa-star" style="color: var(--warning);"></i>
+                                        <span style="font-weight: 600;">4.8</span>
+                                        <span style="font-size: 0.8rem; color: #888;">(64)</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge success">Active</span></td>
+                                <td>
+                                    <a href="supplier_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="supplier_edit.html" class="action-btn btn-edit">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    <a href="#" class="action-btn" style="background: #fee2e2; color: var(--danger);">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <div style="color: var(--secondary); font-size: 0.85rem;">
+                        Showing 1-10 of 48 suppliers
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Previous</button>
+                        <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: var(--primary); color: white;">1</button>
+                        <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">2</button>
+                        <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">3</button>
+                        <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supplier Categories -->
+            <div class="card col-span-1">
+                <h3 style="margin-bottom: 20px;">Supplier Categories</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: 600; color: var(--primary);">Electronics</span>
+                            <span>18</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: 600; color: var(--success);">Audio Equipment</span>
+                            <span>12</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 50%; height: 100%; background: var(--success); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: 600; color: var(--danger);">Furniture</span>
+                            <span>8</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 33%; height: 100%; background: var(--danger); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: 600; color: var(--warning);">Wearables</span>
+                            <span>6</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 25%; height: 100%; background: var(--warning); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: 600; color: var(--dark);">Other</span>
+                            <span>4</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 17%; height: 100%; background: var(--dark); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Top Suppliers by Spend</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Tech Supplies Inc.</div>
+                            <div style="color: var(--primary); font-weight: 600;">$124,850</div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">SoundMax Distributors</div>
+                            <div style="color: var(--primary); font-weight: 600;">$89,450</div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Furniture World</div>
+                            <div style="color: var(--primary); font-weight: 600;">$67,890</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="#" style="display: block; text-align: center; padding: 10px; background: var(--light); color: var(--dark); border-radius: 10px;">
+                        <i class="fa-solid fa-chart-bar"></i> View Analytics
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

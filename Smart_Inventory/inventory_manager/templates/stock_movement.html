@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Stock Movement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Stock Movement History</h2>
+                <span>Track all inventory transactions</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search movement...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin-bottom: 5px;">Movement History</h3>
+                    <p style="color: var(--secondary); font-size: 0.9rem;">Total records: 1,245 transactions</p>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div>
+                        <label style="font-size: 0.85rem; color: var(--secondary);">Date Range:</label>
+                        <select style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; margin-left: 10px;">
+                            <option>Last 7 Days</option>
+                            <option selected>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                            <option>Custom Range</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.85rem; color: var(--secondary);">Type:</label>
+                        <select style="padding: 8px; border-radius: 8px; border: 1px solid #ddd; margin-left: 10px;">
+                            <option>All Types</option>
+                            <option>Purchase</option>
+                            <option>Sales</option>
+                            <option>Adjustment</option>
+                            <option>Transfer</option>
+                        </select>
+                    </div>
+                    <button style="padding: 8px 15px; background: var(--primary); color: white; border-radius: 8px; border: none; cursor: pointer;">
+                        <i class="fa-solid fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Transaction ID</th>
+                            <th>Product</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Before</th>
+                            <th>After</th>
+                            <th>Reference</th>
+                            <th>User</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dec 15, 2023<br>10:30 AM</td>
+                            <td><strong>STK-2023-001245</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Wireless Headphones Pro</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-001</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge success">Purchase</span></td>
+                            <td style="color: var(--success); font-weight: 600;">+25</td>
+                            <td>20</td>
+                            <td>45</td>
+                            <td>PO-2023-001</td>
+                            <td>Ferra Alexandra</td>
+                            <td>Purchase order received</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 14, 2023<br>03:45 PM</td>
+                            <td><strong>STK-2023-001244</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Smart Watch Series 5</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-003</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge danger">Sales</span></td>
+                            <td style="color: var(--danger); font-weight: 600;">-3</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>SO-2023-045</td>
+                            <td>System</td>
+                            <td>Online order fulfilled</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 13, 2023<br>09:15 AM</td>
+                            <td><strong>STK-2023-001243</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Gaming Chair Elite</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-002</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge" style="background: #e0e7ff; color: var(--primary);">Adjustment</span></td>
+                            <td style="color: var(--success); font-weight: 600;">+5</td>
+                            <td>7</td>
+                            <td>12</td>
+                            <td>ADJ-2023-012</td>
+                            <td>John Doe</td>
+                            <td>Physical count adjustment</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 12, 2023<br>02:20 PM</td>
+                            <td><strong>STK-2023-001242</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Bluetooth Speaker</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-004</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge success">Purchase</span></td>
+                            <td style="color: var(--success); font-weight: 600;">+50</td>
+                            <td>37</td>
+                            <td>87</td>
+                            <td>PO-2023-002</td>
+                            <td>Ferra Alexandra</td>
+                            <td>Bulk order received</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 11, 2023<br>11:10 AM</td>
+                            <td><strong>STK-2023-001241</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Mechanical Keyboard</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-006</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge danger">Sales</span></td>
+                            <td style="color: var(--danger); font-weight: 600;">-2</td>
+                            <td>10</td>
+                            <td>8</td>
+                            <td>SO-2023-044</td>
+                            <td>System</td>
+                            <td>Retail store sale</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 10, 2023<br>04:30 PM</td>
+                            <td><strong>STK-2023-001240</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Wireless Headphones Pro</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-001</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge danger">Sales</span></td>
+                            <td style="color: var(--danger); font-weight: 600;">-5</td>
+                            <td>25</td>
+                            <td>20</td>
+                            <td>SO-2023-043</td>
+                            <td>System</td>
+                            <td>Bulk order to corporate client</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 9, 2023<br>01:45 PM</td>
+                            <td><strong>STK-2023-001239</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Gaming Chair Elite</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-002</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge" style="background: #fef3c7; color: #92400e;">Return</span></td>
+                            <td style="color: var(--success); font-weight: 600;">+1</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>RTN-2023-008</td>
+                            <td>Jane Smith</td>
+                            <td>Customer return - damaged packaging</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 8, 2023<br>10:00 AM</td>
+                            <td><strong>STK-2023-001238</strong></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.9rem;">Smart Watch Series 5</div>
+                                        <div style="font-size: 0.75rem; color: #888;">SKU-003</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge" style="background: #e0e7ff; color: var(--primary);">Adjustment</span></td>
+                            <td style="color: var(--danger); font-weight: 600;">-2</td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>ADJ-2023-011</td>
+                            <td>Warehouse</td>
+                            <td>Damaged during handling</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                <div style="color: var(--secondary); font-size: 0.85rem;">
+                    Showing 1-8 of 1,245 transactions
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Previous</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: var(--primary); color: white;">1</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">2</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">3</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">4</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-top: 25px;">
+            <!-- Movement Summary -->
+            <div class="card col-span-2">
+                <h3 style="margin-bottom: 20px;">Movement Summary (Last 30 Days)</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
+                    <div style="padding: 20px; background: #f0f7ff; border-radius: 10px;">
+                        <div style="font-size: 0.85rem; color: var(--secondary); margin-bottom: 5px;">Total Transactions</div>
+                        <div style="font-size: 1.8rem; font-weight: 700;">124</div>
+                    </div>
+                    <div style="padding: 20px; background: #f0f7ff; border-radius: 10px;">
+                        <div style="font-size: 0.85rem; color: var(--secondary); margin-bottom: 5px;">Stock In</div>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--success);">+892</div>
+                    </div>
+                    <div style="padding: 20px; background: #f0f7ff; border-radius: 10px;">
+                        <div style="font-size: 0.85rem; color: var(--secondary); margin-bottom: 5px;">Stock Out</div>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--danger);">-567</div>
+                    </div>
+                    <div style="padding: 20px; background: #f0f7ff; border-radius: 10px;">
+                        <div style="font-size: 0.85rem; color: var(--secondary); margin-bottom: 5px;">Net Change</div>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary);">+325</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Movement by Type</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Purchase Orders</span>
+                                <span style="font-weight: 600;">45 transactions</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 65%; height: 100%; background: var(--success);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Sales Orders</span>
+                                <span style="font-weight: 600;">38 transactions</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 55%; height: 100%; background: var(--danger);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Adjustments</span>
+                                <span style="font-weight: 600;">22 transactions</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 32%; height: 100%; background: var(--primary);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Returns</span>
+                                <span style="font-weight: 600;">19 transactions</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                <div style="width: 28%; height: 100%; background: var(--warning);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Products by Movement -->
+            <div class="card col-span-1">
+                <h3 style="margin-bottom: 20px;">Top Products by Movement</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Wireless Headphones Pro</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                            <span>45 movements</span>
+                            <span style="color: var(--success);">Net: +30</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Bluetooth Speaker</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                            <span>38 movements</span>
+                            <span style="color: var(--success);">Net: +25</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Smart Watch Series 5</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                            <span>32 movements</span>
+                            <span style="color: var(--danger);">Net: -15</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <img src="https://via.placeholder.com/30" style="width: 30px; height: 30px; border-radius: 6px; object-fit: cover;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">Gaming Chair Elite</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                            <span>28 movements</span>
+                            <span style="color: var(--success);">Net: +8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="#" style="display: block; text-align: center; padding: 10px; background: var(--light); color: var(--dark); border-radius: 10px;">
+                        <i class="fa-solid fa-chart-line"></i> View Detailed Analytics
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

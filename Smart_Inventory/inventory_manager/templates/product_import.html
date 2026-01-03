@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Import Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Import Products</h2>
+                <span>Bulk import from CSV/Excel</span>
+            </div>
+            <div class="user-actions">
+                <a href="product_list.html" style="color: var(--secondary); font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Products
+                </a>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Import Steps -->
+            <div class="card col-span-3">
+                <div style="display: flex; margin-bottom: 40px;">
+                    <div style="flex: 1; text-align: center; position: relative;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: 600;">1</div>
+                        <div style="font-weight: 600;">Prepare File</div>
+                        <div style="height: 3px; background: var(--primary); position: absolute; top: 20px; left: 50%; width: 100%; z-index: -1;"></div>
+                    </div>
+                    <div style="flex: 1; text-align: center; position: relative;">
+                        <div style="width: 40px; height: 40px; background: var(--light); color: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: 600;">2</div>
+                        <div>Upload & Map</div>
+                    </div>
+                    <div style="flex: 1; text-align: center;">
+                        <div style="width: 40px; height: 40px; background: var(--light); color: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: 600;">3</div>
+                        <div>Review & Import</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 20px;">Step 1: Prepare Your File</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                    <div>
+                        <h4 style="margin-bottom: 15px;">Download Template</h4>
+                        <p style="color: var(--secondary); margin-bottom: 20px; line-height: 1.6;">
+                            Download our CSV template to ensure your data is formatted correctly. 
+                            The template includes all required fields and sample data.
+                        </p>
+                        <a href="#" style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background: var(--primary); color: white; border-radius: 10px;">
+                            <i class="fa-solid fa-download"></i> Download CSV Template
+                        </a>
+                    </div>
+                    
+                    <div>
+                        <h4 style="margin-bottom: 15px;">Required Fields</h4>
+                        <ul style="color: var(--secondary); line-height: 1.8;">
+                            <li><strong>product_name</strong> (Required)</li>
+                            <li><strong>sku</strong> (Required, Unique)</li>
+                            <li><strong>category</strong> (Required)</li>
+                            <li><strong>price</strong> (Required, Number)</li>
+                            <li><strong>quantity</strong> (Required, Number)</li>
+                            <li>brand (Optional)</li>
+                            <li>description (Optional)</li>
+                            <li>cost_price (Optional)</li>
+                            <li>supplier (Optional)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fc; border-radius: 15px; padding: 20px; margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-lightbulb" style="color: var(--warning);"></i>
+                        Important Notes
+                    </h4>
+                    <ul style="color: var(--dark); line-height: 1.6;">
+                        <li>File must be in CSV format (UTF-8 encoding recommended)</li>
+                        <li>Maximum file size: 10MB</li>
+                        <li>Maximum records per import: 5000 products</li>
+                        <li>Existing products with same SKU will be updated</li>
+                        <li>New products with unique SKU will be created</li>
+                        <li>All monetary values should be in USD</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: right; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="product_list.html" style="padding: 12px 30px; border: 1px solid #ddd; border-radius: 10px; color: var(--dark); margin-right: 15px;">
+                        Cancel
+                    </a>
+                    <a href="#" style="padding: 12px 30px; background: var(--primary); color: white; border-radius: 10px;">
+                        Next: Upload File <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sample Data -->
+            <div class="card col-span-1">
+                <h3 style="margin-bottom: 20px;">Sample Data</h3>
+                <div style="overflow-x: auto;">
+                    <table style="font-size: 0.75rem;">
+                        <thead>
+                            <tr style="background: #f8f9fc;">
+                                <th style="padding: 8px;">product_name</th>
+                                <th style="padding: 8px;">sku</th>
+                                <th style="padding: 8px;">category</th>
+                                <th style="padding: 8px;">price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px;">Wireless Headphones</td>
+                                <td style="padding: 8px;">SKU-001</td>
+                                <td style="padding: 8px;">Electronics</td>
+                                <td style="padding: 8px;">199.99</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">Gaming Chair</td>
+                                <td style="padding: 8px;">SKU-002</td>
+                                <td style="padding: 8px;">Furniture</td>
+                                <td style="padding: 8px;">349.99</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px;">Smart Watch</td>
+                                <td style="padding: 8px;">SKU-003</td>
+                                <td style="padding: 8px;">Electronics</td>
+                                <td style="padding: 8px;">299.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <h4 style="margin-bottom: 10px;">Recent Imports</h4>
+                    <div style="font-size: 0.85rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Dec 14, 2023</span>
+                            <span style="color: var(--success);">45 products</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Dec 7, 2023</span>
+                            <span style="color: var(--success);">23 products</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Nov 30, 2023</span>
+                            <span style="color: var(--danger);">Failed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Purchase Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        <a href="stock_list.html" class="menu-item"><i class="fa-solid fa-boxes-stacked"></i> Stock</a>
+        
+        <div class="menu-category">Financial</div>
+        <a href="purchase_order_list.html" class="menu-item"><i class="fa-solid fa-cart-shopping"></i> Purchase</a>
+        <a href="supplier_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Suppliers</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Get full access now</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Purchase Orders</h2>
+                <span>Manage supplier purchases</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search purchase orders...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Ferra+Alexandra&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Ferra Alexandra</div>
+                        <div style="font-size: 0.75rem; color: #888;">Admin Store</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-bottom: 25px;">
+            <!-- Purchase Overview Cards -->
+            <div class="card stat-card blue col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-file-invoice"></i></div>
+                    <span class="badge success">+5.2%</span>
+                </div>
+                <div>
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-val">156</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <span class="badge success">+12.4%</span>
+                </div>
+                <div>
+                    <div class="stat-label">Total Value</div>
+                    <div class="stat-val">$245.8K</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-clock"></i></div>
+                    <span class="badge warning">8</span>
+                </div>
+                <div>
+                    <div class="stat-label">Pending Orders</div>
+                    <div class="stat-val">12</div>
+                </div>
+            </div>
+
+            <div class="card stat-card col-span-1">
+                <div class="stat-header">
+                    <div class="icon-box"><i class="fa-solid fa-truck"></i></div>
+                    <span class="badge warning">5</span>
+                </div>
+                <div>
+                    <div class="stat-label">In Transit</div>
+                    <div class="stat-val">8</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin-bottom: 5px;">All Purchase Orders</h3>
+                    <p style="color: var(--secondary); font-size: 0.9rem;">Total: 156 orders | Pending: 12 | Delivered: 134</p>
+                </div>
+                <div>
+                    <a href="purchase_order_create.html" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-plus"></i> Create Purchase Order
+                    </a>
+                    <button style="padding: 10px 15px; background: var(--light); color: var(--dark); border-radius: 10px; border: none; margin-left: 10px; cursor: pointer;">
+                        <i class="fa-solid fa-filter"></i> Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PO Number</th>
+                            <th>Supplier</th>
+                            <th>Order Date</th>
+                            <th>Expected Delivery</th>
+                            <th>Items</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 600; color: var(--primary);">PO-2023-001</div>
+                                <div style="font-size: 0.8rem; color: #888;">Created: Dec 15, 2023</div>
+                            </td>
+                            <td>
+                                <div style="font-weight: 600;">Tech Supplies Inc.</div>
+                                <div style="font-size: 0.8rem; color: #888;">Contact: John Smith</div>
+                            </td>
+                            <td>Dec 10, 2023</td>
+                            <td>Dec 20, 2023</td>
+                            <td>
+                                <div>5 items</div>
+                                <div style="font-size: 0.8rem; color: #888;">Wireless Headphones (25)</div>
+                            </td>
+                            <td>$4,999.75</td>
+                            <td><span class="badge warning">Pending</span></td>
+                            <td>
+                                <a href="purchase_order_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="purchase_order_edit.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="purchase_order_delete.html" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 600; color: var(--primary);">PO-2023-002</div>
+                                <div style="font-size: 0.8rem; color: #888;">Created: Dec 12, 2023</div>
+                            </td>
+                            <td>
+                                <div style="font-weight: 600;">SoundMax Distributors</div>
+                                <div style="font-size: 0.8rem; color: #888;">Contact: Sarah Johnson</div>
+                            </td>
+                            <td>Dec 8, 2023</td>
+                            <td>Dec 18, 2023</td>
+                            <td>
+                                <div>3 items</div>
+                                <div style="font-size: 0.8rem; color: #888;">Bluetooth Speakers (50)</div>
+                            </td>
+                            <td>$4,499.50</td>
+                            <td><span class="badge success">Delivered</span></td>
+                            <td>
+                                <a href="purchase_order_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="purchase_order_edit.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="purchase_order_delete.html" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 600; color: var(--primary);">PO-2023-003</div>
+                                <div style="font-size: 0.8rem; color: #888;">Created: Dec 5, 2023</div>
+                            </td>
+                            <td>
+                                <div style="font-weight: 600;">Furniture World</div>
+                                <div style="font-size: 0.8rem; color: #888;">Contact: Mike Wilson</div>
+                            </td>
+                            <td>Dec 1, 2023</td>
+                            <td>Dec 15, 2023</td>
+                            <td>
+                                <div>2 items</div>
+                                <div style="font-size: 0.8rem; color: #888;">Gaming Chairs (10)</div>
+                            </td>
+                            <td>$3,499.90</td>
+                            <td><span class="badge" style="background: #e0e7ff; color: var(--primary);">In Transit</span></td>
+                            <td>
+                                <a href="purchase_order_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="purchase_order_edit.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="purchase_order_delete.html" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-weight: 600; color: var(--primary);">PO-2023-004</div>
+                                <div style="font-size: 0.8rem; color: #888;">Created: Nov 28, 2023</div>
+                            </td>
+                            <td>
+                                <div style="font-weight: 600;">TechWear Solutions</div>
+                                <div style="font-size: 0.8rem; color: #888;">Contact: Emily Brown</div>
+                            </td>
+                            <td>Nov 25, 2023</td>
+                            <td>Dec 5, 2023</td>
+                            <td>
+                                <div>4 items</div>
+                                <div style="font-size: 0.8rem; color: #888;">Smart Watches (15)</div>
+                            </td>
+                            <td>$4,499.85</td>
+                            <td><span class="badge success">Delivered</span></td>
+                            <td>
+                                <a href="purchase_order_details.html" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="purchase_order_edit.html" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="purchase_order_delete.html" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                <div style="color: var(--secondary); font-size: 0.85rem;">
+                    Showing 1-10 of 156 purchase orders
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Previous</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: var(--primary); color: white;">1</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">2</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">3</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-top: 25px;">
+            <!-- Recent Activity -->
+            <div class="card col-span-2">
+                <div class="chart-header">
+                    <h3>Recent Purchase Activity</h3>
+                    <a href="#" style="color: var(--primary); font-size: 0.9rem;">View All</a>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">PO-2023-001 Created</div>
+                            <span style="font-size: 0.85rem; color: var(--secondary);">2 hours ago</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">
+                            New purchase order created for Tech Supplies Inc. with 5 items totaling $4,999.75
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">PO-2023-002 Delivered</div>
+                            <span style="font-size: 0.85rem; color: var(--secondary);">1 day ago</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">
+                            Purchase order from SoundMax Distributors delivered and stock updated
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 15px; background: #f8f9fc; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <div style="font-weight: 600;">PO-2023-003 Shipped</div>
+                            <span style="font-size: 0.85rem; color: var(--secondary);">2 days ago</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">
+                            Furniture World shipped order with tracking #TRK-789456123
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Purchase Statistics -->
+            <div class="card col-span-1">
+                <h3 style="margin-bottom: 20px;">Purchase Statistics</h3>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-size: 0.9rem;">This Month</span>
+                            <span style="font-weight: 600; color: var(--primary);">$45,876</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-size: 0.9rem;">Last Month</span>
+                            <span style="font-weight: 600; color: var(--primary);">$38,942</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 65%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-size: 0.9rem;">This Quarter</span>
+                            <span style="font-weight: 600; color: var(--primary);">$128,765</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 85%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-size: 0.9rem;">Total YTD</span>
+                            <span style="font-weight: 600; color: var(--primary);">$245,876</span>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #eee; border-radius: 3px;">
+                            <div style="width: 90%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <a href="#" style="display: block; text-align: center; padding: 10px; background: var(--light); color: var(--dark); border-radius: 10px;">
+                        <i class="fa-solid fa-chart-pie"></i> View Full Report
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
