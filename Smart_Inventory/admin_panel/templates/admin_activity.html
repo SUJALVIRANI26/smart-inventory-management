@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Activity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'admin_panel/main.css' %}">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Admin</div>
+        <a href="/admin-panel/" class="menu-item"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="/admin-panel/users/" class="menu-item"><i class="fa-solid fa-users"></i> Users</a>
+        <a href="/admin-panel/roles/" class="menu-item"><i class="fa-solid fa-user-shield"></i> Roles</a>
+
+        <div class="menu-category">Security</div>
+        <a href="/admin-panel/activity/" class="menu-item active"><i class="fa-solid fa-clipboard-list"></i> Activity</a>
+
+        <div class="menu-category">System</div>
+        <a href="/admin-panel/settings/" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Unlock advanced controls</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Activity Logs</h2>
+                <span>System audit trail</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search activity...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">System Admin</div>
+                        <div style="font-size: 0.75rem; color: #888;">Control Center</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>Event</th>
+                            <th>User</th>
+                            <th>IP Address</th>
+                            <th>Result</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Password reset</td>
+                            <td>Riya Shah</td>
+                            <td>192.168.1.42</td>
+                            <td><span class="badge success">Success</span></td>
+                            <td>Feb 7, 2026 10:12 AM</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Role updated</td>
+                            <td>System Admin</td>
+                            <td>192.168.1.7</td>
+                            <td><span class="badge success">Success</span></td>
+                            <td>Feb 7, 2026 09:48 AM</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Failed login</td>
+                            <td>Unknown</td>
+                            <td>203.84.88.190</td>
+                            <td><span class="badge danger">Blocked</span></td>
+                            <td>Feb 7, 2026 08:55 AM</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>User suspended</td>
+                            <td>System Admin</td>
+                            <td>192.168.1.7</td>
+                            <td><span class="badge success">Success</span></td>
+                            <td>Feb 6, 2026 06:12 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'admin_panel/main.js' %}"></script>
+</body>
+</html>

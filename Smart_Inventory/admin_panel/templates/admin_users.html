@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'admin_panel/main.css' %}">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Admin</div>
+        <a href="/admin-panel/" class="menu-item"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="/admin-panel/users/" class="menu-item active"><i class="fa-solid fa-users"></i> Users</a>
+        <a href="/admin-panel/roles/" class="menu-item"><i class="fa-solid fa-user-shield"></i> Roles</a>
+
+        <div class="menu-category">Security</div>
+        <a href="/admin-panel/activity/" class="menu-item"><i class="fa-solid fa-clipboard-list"></i> Activity</a>
+
+        <div class="menu-category">System</div>
+        <a href="/admin-panel/settings/" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Unlock advanced controls</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Users</h2>
+                <span>Manage system users</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search users...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">System Admin</div>
+                        <div style="font-size: 0.75rem; color: #888;">Control Center</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin-bottom: 5px;">All Users</h3>
+                    <p style="color: var(--secondary); font-size: 0.9rem;">Total: 256 users</p>
+                </div>
+                <div>
+                    <a href="#" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-plus"></i> Add User
+                    </a>
+                    <a href="#" class="action-btn" style="background: var(--light); color: var(--dark); padding: 10px 15px; margin-left: 10px;">
+                        <i class="fa-solid fa-file-arrow-down"></i> Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>User</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ui-avatars.com/api/?name=Riya+Shah&background=random" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Riya Shah</div>
+                                        <div style="font-size: 0.8rem; color: #888;">ID: U-1021</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Inventory Manager</td>
+                            <td>riya@dealdeck.com</td>
+                            <td><span class="badge success">Active</span></td>
+                            <td>Feb 7, 2026</td>
+                            <td>
+                                <a href="#" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ui-avatars.com/api/?name=Arjun+Mehta&background=random" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Arjun Mehta</div>
+                                        <div style="font-size: 0.8rem; color: #888;">ID: U-1087</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Sales Team</td>
+                            <td>arjun@dealdeck.com</td>
+                            <td><span class="badge success">Active</span></td>
+                            <td>Feb 6, 2026</td>
+                            <td>
+                                <a href="#" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ui-avatars.com/api/?name=Neha+Patel&background=random" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                    <div>
+                                        <div style="font-weight: 600;">Neha Patel</div>
+                                        <div style="font-size: 0.8rem; color: #888;">ID: U-1102</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Owner</td>
+                            <td>neha@dealdeck.com</td>
+                            <td><span class="badge danger">Suspended</span></td>
+                            <td>Feb 2, 2026</td>
+                            <td>
+                                <a href="#" class="action-btn" style="background: #e0e7ff; color: var(--primary);">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" class="action-btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#" class="action-btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                <div style="color: var(--secondary); font-size: 0.85rem;">
+                    Showing 1-10 of 256 users
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Previous</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: var(--primary); color: white;">1</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">2</button>
+                    <button style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; background: white;">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'admin_panel/main.js' %}"></script>
+</body>
+</html>

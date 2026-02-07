@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Roles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'admin_panel/main.css' %}">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Admin</div>
+        <a href="/admin-panel/" class="menu-item"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="/admin-panel/users/" class="menu-item"><i class="fa-solid fa-users"></i> Users</a>
+        <a href="/admin-panel/roles/" class="menu-item active"><i class="fa-solid fa-user-shield"></i> Roles</a>
+
+        <div class="menu-category">Security</div>
+        <a href="/admin-panel/activity/" class="menu-item"><i class="fa-solid fa-clipboard-list"></i> Activity</a>
+
+        <div class="menu-category">System</div>
+        <a href="/admin-panel/settings/" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Unlock advanced controls</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Roles & Permissions</h2>
+                <span>Configure access control</span>
+            </div>
+            <div class="user-actions">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search roles...">
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">System Admin</div>
+                        <div style="font-size: 0.75rem; color: #888;">Control Center</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="margin-bottom: 5px;">Role Catalog</h3>
+                    <p style="color: var(--secondary); font-size: 0.9rem;">Total: 8 roles</p>
+                </div>
+                <div>
+                    <a href="#" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-plus"></i> Add Role
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-span-3">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>Role Name</th>
+                            <th>Description</th>
+                            <th>Users</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Admin</td>
+                            <td>Full system access</td>
+                            <td>3</td>
+                            <td><span class="badge success">Active</span></td>
+                            <td>
+                                <a href="#" class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></a>
+                                <a href="#" class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Owner</td>
+                            <td>Business-wide control</td>
+                            <td>2</td>
+                            <td><span class="badge success">Active</span></td>
+                            <td>
+                                <a href="#" class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></a>
+                                <a href="#" class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Inventory Manager</td>
+                            <td>Stock and purchase control</td>
+                            <td>12</td>
+                            <td><span class="badge success">Active</span></td>
+                            <td>
+                                <a href="#" class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></a>
+                                <a href="#" class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Sales Team</td>
+                            <td>Billing and sales control</td>
+                            <td>19</td>
+                            <td><span class="badge success">Active</span></td>
+                            <td>
+                                <a href="#" class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></a>
+                                <a href="#" class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'admin_panel/main.js' %}"></script>
+</body>
+</html>

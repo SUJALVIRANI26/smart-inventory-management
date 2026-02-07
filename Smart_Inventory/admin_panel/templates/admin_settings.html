@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'admin_panel/main.css' %}">
+</head>
+<body>
+
+   <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Admin</div>
+        <a href="/admin-panel/" class="menu-item"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="/admin-panel/users/" class="menu-item"><i class="fa-solid fa-users"></i> Users</a>
+        <a href="/admin-panel/roles/" class="menu-item"><i class="fa-solid fa-user-shield"></i> Roles</a>
+
+        <div class="menu-category">Security</div>
+        <a href="/admin-panel/activity/" class="menu-item"><i class="fa-solid fa-clipboard-list"></i> Activity</a>
+
+        <div class="menu-category">System</div>
+        <a href="/admin-panel/settings/" class="menu-item active"><i class="fa-solid fa-gear"></i> Settings</a>
+
+        <div class="upgrade-card">
+            <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Upgrade Pro</h4>
+            <p>Unlock advanced controls</p>
+            <a href="#" class="upgrade-btn">Upgrade $30</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>System Settings</h2>
+                <span>General configuration</span>
+            </div>
+            <div class="user-actions">
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">System Admin</div>
+                        <div style="font-size: 0.75rem; color: #888;">Control Center</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 15px;">Organization</h3>
+            <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" class="form-control" value="DealDeck Pvt Ltd">
+                    </div>
+                    <div class="form-group">
+                        <label>Support Email</label>
+                        <input type="email" class="form-control" value="support@dealdeck.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Default Currency</label>
+                        <select class="form-control">
+                            <option>USD</option>
+                            <option>INR</option>
+                            <option>EUR</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Time Zone</label>
+                        <select class="form-control">
+                            <option>UTC</option>
+                            <option>Asia/Kolkata</option>
+                            <option>America/New_York</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3 style="margin: 25px 0 15px;">Security</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Session Timeout (minutes)</label>
+                        <input type="number" class="form-control" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Login Attempts</label>
+                        <input type="number" class="form-control" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label>Two-Factor Authentication</label>
+                        <select class="form-control">
+                            <option>Enabled</option>
+                            <option>Disabled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Audit Retention (days)</label>
+                        <input type="number" class="form-control" value="90">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Save Settings</button>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'admin_panel/main.js' %}"></script>
+</body>
+</html>
