@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - Create Invoice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .invoice-preview {
+            border: 1px solid #e3e6f0;
+            border-radius: 10px;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+        }
+        
+        .customer-selector {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .add-item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .item-total {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .customer-form-fields {
+            background: #f8f9fc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        
+        <div class="menu-category">Sales</div>
+        <a href="sales_order_list.html" class="menu-item"><i class="fa-solid fa-cart-plus"></i> Sales Orders</a>
+        <a href="customer_list.html" class="menu-item"><i class="fa-solid fa-users"></i> Customers</a>
+        <a href="invoice_list.html" class="menu-item active"><i class="fa-solid fa-receipt"></i> Invoices</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <h4>Upgrade to Pro</h4>
+            <p>Get advanced features</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>Create New Invoice</h2>
+                <span>Generate invoice for customer</span>
+            </div>
+            <div class="user-actions">
+                <a href="invoice_list.html" class="btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Invoices
+                </a>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=John+S&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">John Sales</div>
+                        <div style="font-size: 0.75rem; color: #888;">Sales Executive</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card col-span-3">
+                <h3 style="margin-bottom: 20px;">Invoice Details</h3>
+                
+                <form id="invoiceForm" method="POST" action="#">
+                    {% csrf_token %}
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="invoiceNumber">Invoice Number *</label>
+                            <input type="text" id="invoiceNumber" name="invoice_number" class="form-control" value="INV-{{ current_year }}-001" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="invoiceDate">Invoice Date *</label>
+                            <input type="date" id="invoiceDate" name="invoice_date" class="form-control" value="{{ today }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dueDate">Due Date *</label>
+                            <input type="date" id="dueDate" name="due_date" class="form-control" value="{{ due_date }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="orderNumber">Order Number (Optional)</label>
+                            <input type="text" id="orderNumber" name="order_number" class="form-control" placeholder="e.g., SO-2023-001">
+                        </div>
+                    </div>
+                    
+                    <!-- Customer Selection -->
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="customer">Select Customer *</label>
+                        <div class="customer-selector">
+                            <select id="customer" name="customer_id" class="form-control" required>
+                                <option value="">Select Customer</option>
+                                {% for customer in customers %}
+                                <option value="{{ customer.id }}">
+                                    {{ customer.name }} - {{ customer.email }}
+                                </option>
+                                {% endfor %}
+                                <option value="new">+ Add New Customer</option>
+                            </select>
+                            <a href="#new-customer-form" class="btn-outline" onclick="showNewCustomerForm()">
+                                <i class="fa-solid fa-user-plus"></i> New Customer
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- New Customer Form (Initially Hidden) -->
+                    <div id="new-customer-form" class="customer-form-fields" style="display: none;">
+                        <h4 style="margin-bottom: 15px;">New Customer Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="newCustomerName">Full Name *</label>
+                                <input type="text" id="newCustomerName" name="new_customer_name" class="form-control" placeholder="Enter customer name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newCustomerEmail">Email *</label>
+                                <input type="email" id="newCustomerEmail" name="new_customer_email" class="form-control" placeholder="customer@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newCustomerPhone">Phone</label>
+                                <input type="tel" id="newCustomerPhone" name="new_customer_phone" class="form-control" placeholder="(123) 456-7890">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newCustomerCompany">Company</label>
+                                <input type="text" id="newCustomerCompany" name="new_customer_company" class="form-control" placeholder="Company name (optional)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newCustomerAddress">Address</label>
+                                <textarea id="newCustomerAddress" name="new_customer_address" class="form-control" rows="2" placeholder="Street address, City, State, ZIP"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newCustomerTaxId">Tax ID/VAT</label>
+                                <input type="text" id="newCustomerTaxId" name="new_customer_tax_id" class="form-control" placeholder="Tax identification number">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Invoice Items -->
+                    <div style="margin-top: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h4>Invoice Items</h4>
+                            <button type="button" id="addItemBtn" class="btn-sm btn-primary" onclick="addItemRow()">
+                                <i class="fa-solid fa-plus"></i> Add Item
+                            </button>
+                        </div>
+                        
+                        <div class="invoice-preview">
+                            <div class="add-item-row" style="font-weight: 600; color: var(--secondary); margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                                <div>Description</div>
+                                <div>Quantity</div>
+                                <div>Unit Price</div>
+                                <div>Tax (%)</div>
+                                <div>Total</div>
+                                <div>Action</div>
+                            </div>
+                            
+                            <div id="items-container">
+                                <!-- Items will be added here -->
+                                <div class="add-item-row item-row">
+                                    <select class="form-control item-product" name="items[0][product_id]" onchange="updateItemPrice(this)">
+                                        <option value="">Select Product</option>
+                                        {% for product in products %}
+                                        <option value="{{ product.id }}" data-price="{{ product.price }}">
+                                            {{ product.name }} (Stock: {{ product.stock }})
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="number" class="form-control item-quantity" name="items[0][quantity]" value="1" min="1" oninput="calculateItemTotal(this)">
+                                    <input type="number" class="form-control item-price" name="items[0][unit_price]" value="0.00" step="0.01" oninput="calculateItemTotal(this)">
+                                    <select class="form-control item-tax" name="items[0][tax_rate]" onchange="calculateItemTotal(this)">
+                                        <option value="0">0%</option>
+                                        <option value="8" selected>8%</option>
+                                        <option value="10">10%</option>
+                                        <option value="18">18%</option>
+                                    </select>
+                                    <div class="item-total" data-total="0">$0.00</div>
+                                    <button type="button" class="action-btn btn-danger btn-sm" onclick="removeItem(this)" style="display: none;">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount & Shipping -->
+                    <div class="form-grid" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="discountAmount">Discount Amount</label>
+                            <input type="number" id="discountAmount" name="discount_amount" class="form-control" value="0.00" step="0.01" oninput="updateInvoiceSummary()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="shippingAmount">Shipping Amount</label>
+                            <input type="number" id="shippingAmount" name="shipping_amount" class="form-control" value="0.00" step="0.01" oninput="updateInvoiceSummary()">
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Information -->
+                    <div style="margin-top: 30px;">
+                        <h4 style="margin-bottom: 15px;">Payment Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="paymentMethod">Payment Method *</label>
+                                <select id="paymentMethod" name="payment_method" class="form-control" required>
+                                    <option value="">Select Method</option>
+                                    <option value="credit_card" selected>Credit Card</option>
+                                    <option value="bank_transfer">Bank Transfer</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="check">Check</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="paymentStatus">Payment Status *</label>
+                                <select id="paymentStatus" name="payment_status" class="form-control" required>
+                                    <option value="pending">Pending</option>
+                                    <option value="partial">Partial Payment</option>
+                                    <option value="paid" selected>Paid</option>
+                                    <option value="overdue">Overdue</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label for="notes">Notes (Optional)</label>
+                            <textarea id="notes" name="notes" class="form-control" rows="3" placeholder="Add any notes for this invoice..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Invoice Summary -->
+                    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
+                        <div style="display: flex; justify-content: flex-end;">
+                            <div style="width: 300px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span>Subtotal:</span>
+                                    <span id="invoiceSubtotal">$0.00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span>Tax:</span>
+                                    <span id="invoiceTax">$0.00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span>Discount:</span>
+                                    <span id="invoiceDiscount">$0.00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span>Shipping:</span>
+                                    <span id="invoiceShipping">$0.00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding: 15px 0; border-top: 2px solid var(--primary); font-weight: 700; font-size: 1.2rem;">
+                                    <span>Total Amount:</span>
+                                    <span id="invoiceTotal">$0.00</span>
+                                    <input type="hidden" id="invoiceTotalInput" name="total_amount" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px;">
+                        <button type="button" class="btn-secondary" onclick="window.history.back()">
+                            <i class="fa-solid fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-check"></i> Create Invoice
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Quick Actions & Preview -->
+            <div class="card col-span-1">
+                <div class="chart-header">
+                    <h3>Quick Actions</h3>
+                </div>
+                
+                <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                    <a href="sales_order_list.html" class="btn-primary btn-sm" style="text-align: center;">
+                        <i class="fa-solid fa-cart-plus"></i> Add from Order
+                    </a>
+                    
+                    <button type="button" class="btn-outline btn-sm" onclick="apply10PercentDiscount()">
+                        <i class="fa-solid fa-tag"></i> Apply 10% Discount
+                    </button>
+                    
+                    <button type="button" class="btn-outline btn-sm" onclick="addStandardShipping()">
+                        <i class="fa-solid fa-truck"></i> Add Shipping
+                    </button>
+                    
+                    <button type="button" class="btn-outline btn-sm" onclick="clearAllItems()">
+                        <i class="fa-solid fa-trash"></i> Clear Items
+                    </button>
+                </div>
+                
+                <!-- Recent Customers -->
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Recent Customers</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f8f9fc; border-radius: 8px; cursor: pointer;" onclick="selectExistingCustomer(1, 'James Wilson')">
+                            <img src="https://ui-avatars.com/api/?name=James+Wilson&background=4e73df&color=fff&size=30" class="customer-avatar">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: 600;">James Wilson</div>
+                                <div style="font-size: 0.75rem; color: var(--secondary);">james@example.com</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f8f9fc; border-radius: 8px; cursor: pointer;" onclick="selectExistingCustomer(2, 'Sarah Johnson')">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=1cc88a&color=fff&size=30" class="customer-avatar">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: 600;">Sarah Johnson</div>
+                                <div style="font-size: 0.75rem; color: var(--secondary);">sarah@example.com</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f8f9fc; border-radius: 8px; cursor: pointer;" onclick="selectExistingCustomer(3, 'Tech Solutions Inc.')">
+                            <img src="https://ui-avatars.com/api/?name=Tech+Solutions&background=5a5c69&color=fff&size=30" class="customer-avatar">
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: 600;">Tech Solutions Inc.</div>
+                                <div style="font-size: 0.75rem; color: var(--secondary);">sales@techsolutions.com</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="customer_list.html" style="display: block; text-align: center; margin-top: 15px; color: var(--primary); font-size: 0.85rem;">
+                        <i class="fa-solid fa-users"></i> View All Customers
+                    </a>
+                </div>
+                
+                <!-- Invoice Stats -->
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Invoice Statistics</h4>
+                    <div class="quick-stats">
+                        <div class="stat-box">
+                            <div class="icon-box" style="background: #e0e7ff; color: #4e73df;">
+                                <i class="fa-solid fa-file-invoice"></i>
+                            </div>
+                            <div class="value">24</div>
+                            <div class="label">This Month</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="icon-box" style="background: #d1fae5; color: #065f46;">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                            </div>
+                            <div class="value">$1,245</div>
+                            <div class="label">Avg. Value</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Customer Management
+        function showNewCustomerForm() {
+            document.getElementById('new-customer-form').style.display = 'block';
+            document.getElementById('customer').value = 'new';
+            document.getElementById('newCustomerName').focus();
+        }
+        
+        function selectExistingCustomer(id, name) {
+            document.getElementById('customer').value = id;
+            document.getElementById('new-customer-form').style.display = 'none';
+        }
+        
+        // Item Management
+        let itemCounter = 0;
+        
+        function addItemRow() {
+            itemCounter++;
+            const itemsContainer = document.getElementById('items-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'add-item-row item-row';
+            newRow.innerHTML = `
+                <select class="form-control item-product" name="items[${itemCounter}][product_id]" onchange="updateItemPrice(this)">
+                    <option value="">Select Product</option>
+                    {% for product in products %}
+                    <option value="{{ product.id }}" data-price="{{ product.price }}">
+                        {{ product.name }} (Stock: {{ product.stock }})
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="number" class="form-control item-quantity" name="items[${itemCounter}][quantity]" value="1" min="1" oninput="calculateItemTotal(this)">
+                <input type="number" class="form-control item-price" name="items[${itemCounter}][unit_price]" value="0.00" step="0.01" oninput="calculateItemTotal(this)">
+                <select class="form-control item-tax" name="items[${itemCounter}][tax_rate]" onchange="calculateItemTotal(this)">
+                    <option value="0">0%</option>
+                    <option value="8" selected>8%</option>
+                    <option value="10">10%</option>
+                    <option value="18">18%</option>
+                </select>
+                <div class="item-total" data-total="0">$0.00</div>
+                <button type="button" class="action-btn btn-danger btn-sm" onclick="removeItem(this)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            `;
+            itemsContainer.appendChild(newRow);
+            
+            // Show delete buttons on all rows except first
+            const rows = document.querySelectorAll('.item-row');
+            if (rows.length > 1) {
+                rows.forEach(row => {
+                    row.querySelector('.btn-danger').style.display = 'inline-flex';
+                });
+            }
+        }
+        
+        function removeItem(button) {
+            const row = button.closest('.item-row');
+            if (document.querySelectorAll('.item-row').length > 1) {
+                row.remove();
+                updateInvoiceSummary();
+                
+                // Hide delete button if only one row remains
+                const rows = document.querySelectorAll('.item-row');
+                if (rows.length === 1) {
+                    rows[0].querySelector('.btn-danger').style.display = 'none';
+                }
+            }
+        }
+        
+        function updateItemPrice(select) {
+            const price = select.selectedOptions[0]?.getAttribute('data-price');
+            if (price) {
+                const row = select.closest('.item-row');
+                row.querySelector('.item-price').value = parseFloat(price).toFixed(2);
+                calculateItemTotal(select);
+            }
+        }
+        
+        function calculateItemTotal(input) {
+            const row = input.closest('.item-row');
+            const quantity = parseFloat(row.querySelector('.item-quantity').value) || 0;
+            const price = parseFloat(row.querySelector('.item-price').value) || 0;
+            const taxRate = parseFloat(row.querySelector('.item-tax').value) || 0;
+            
+            const subtotal = quantity * price;
+            const tax = subtotal * (taxRate / 100);
+            const total = subtotal + tax;
+            
+            row.querySelector('.item-total').textContent = `$${total.toFixed(2)}`;
+            row.querySelector('.item-total').setAttribute('data-total', total);
+            updateInvoiceSummary();
+        }
+        
+        function updateInvoiceSummary() {
+            let subtotal = 0;
+            let tax = 0;
+            
+            // Calculate from items
+            document.querySelectorAll('.item-total').forEach(item => {
+                const itemTotal = parseFloat(item.getAttribute('data-total')) || 0;
+                const row = item.closest('.item-row');
+                const quantity = parseFloat(row.querySelector('.item-quantity').value) || 0;
+                const price = parseFloat(row.querySelector('.item-price').value) || 0;
+                const taxRate = parseFloat(row.querySelector('.item-tax').value) || 0;
+                
+                subtotal += quantity * price;
+                tax += (quantity * price) * (taxRate / 100);
+            });
+            
+            const discount = parseFloat(document.getElementById('discountAmount').value) || 0;
+            const shipping = parseFloat(document.getElementById('shippingAmount').value) || 0;
+            const total = subtotal + tax - discount + shipping;
+            
+            // Update display
+            document.getElementById('invoiceSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('invoiceTax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('invoiceDiscount').textContent = `$${discount.toFixed(2)}`;
+            document.getElementById('invoiceShipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('invoiceTotal').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('invoiceTotalInput').value = total.toFixed(2);
+        }
+        
+        // Quick Actions
+        function apply10PercentDiscount() {
+            const subtotalText = document.getElementById('invoiceSubtotal').textContent;
+            const subtotal = parseFloat(subtotalText.replace('$', '')) || 0;
+            const discount = subtotal * 0.1;
+            document.getElementById('discountAmount').value = discount.toFixed(2);
+            updateInvoiceSummary();
+        }
+        
+        function addStandardShipping() {
+            document.getElementById('shippingAmount').value = '24.80';
+            updateInvoiceSummary();
+        }
+        
+        function clearAllItems() {
+            if (confirm('Are you sure you want to clear all items?')) {
+                const itemsContainer = document.getElementById('items-container');
+                const firstRow = itemsContainer.querySelector('.item-row');
+                itemsContainer.innerHTML = '';
+                itemsContainer.appendChild(firstRow);
+                
+                // Reset first row
+                firstRow.querySelector('.item-product').value = '';
+                firstRow.querySelector('.item-quantity').value = '1';
+                firstRow.querySelector('.item-price').value = '0.00';
+                firstRow.querySelector('.item-tax').value = '8';
+                firstRow.querySelector('.item-total').textContent = '$0.00';
+                firstRow.querySelector('.item-total').setAttribute('data-total', '0');
+                firstRow.querySelector('.btn-danger').style.display = 'none';
+                
+                // Reset counter
+                itemCounter = 0;
+                
+                updateInvoiceSummary();
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateInvoiceSummary();
+        });
+        
+        // Form validation
+        document.getElementById('invoiceForm').addEventListener('submit', function(e) {
+            const customerSelect = document.getElementById('customer');
+            const items = document.querySelectorAll('.item-row');
+            
+            if (customerSelect.value === '') {
+                alert('Please select a customer or add a new one');
+                e.preventDefault();
+                return;
+            }
+            
+            let hasValidItems = false;
+            items.forEach(item => {
+                const productSelect = item.querySelector('.item-product');
+                if (productSelect.value !== '') {
+                    hasValidItems = true;
+                }
+            });
+            
+            if (!hasValidItems) {
+                alert('Please add at least one item to the invoice');
+                e.preventDefault();
+                return;
+            }
+            
+            if (customerSelect.value === 'new') {
+                const newName = document.getElementById('newCustomerName').value.trim();
+                const newEmail = document.getElementById('newCustomerEmail').value.trim();
+                
+                if (!newName || !newEmail) {
+                    alert('Please fill in the new customer name and email');
+                    e.preventDefault();
+                    return;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

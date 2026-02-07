@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDeck - {% if customer %}Edit{% else %}Add{% endif %} Customer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>DealDeck</span>
+        </div>
+
+        <div class="menu-category">Menu</div>
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="product_list.html" class="menu-item"><i class="fa-solid fa-box-open"></i> Products</a>
+        
+        <div class="menu-category">Sales</div>
+        <a href="sales_order_list.html" class="menu-item"><i class="fa-solid fa-cart-plus"></i> Sales Orders</a>
+        <a href="customer_list.html" class="menu-item active"><i class="fa-solid fa-users"></i> Customers</a>
+        <a href="invoice_list.html" class="menu-item"><i class="fa-solid fa-receipt"></i> Invoices</a>
+        
+        <div class="menu-category">Tools</div>
+        <a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+        
+        <div class="upgrade-card">
+            <h4>Upgrade to Pro</h4>
+            <p>Get advanced features</p>
+            <a href="#" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h2>{% if customer %}Edit Customer{% else %}Add New Customer{% endif %}</h2>
+                <span>{% if customer %}Update customer information{% else %}Add a new customer to the system{% endif %}</span>
+            </div>
+            <div class="user-actions">
+                <a href="customer_list.html" class="btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Customers
+                </a>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=John+S&background=random" alt="User">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">John Sales</div>
+                        <div style="font-size: 0.75rem; color: #888;">Sales Executive</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card col-span-3">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h3>Customer Information</h3>
+                    {% if customer %}
+                    <span class="badge" style="background: #e0e7ff; color: #4e73df;">
+                        Customer ID: {{ customer.id }}
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <form method="POST" action="#">
+                    {% csrf_token %}
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="customerName">Full Name *</label>
+                            <input type="text" id="customerName" name="name" class="form-control" 
+                                   value="{{ customer.name|default:'' }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerEmail">Email Address *</label>
+                            <input type="email" id="customerEmail" name="email" class="form-control" 
+                                   value="{{ customer.email|default:'' }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" name="phone" class="form-control" 
+                                   value="{{ customer.phone|default:'' }}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerCompany">Company</label>
+                            <input type="text" id="customerCompany" name="company" class="form-control" 
+                                   value="{{ customer.company|default:'' }}">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <h4 style="margin-bottom: 15px;">Address Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="addressLine1">Address Line 1</label>
+                                <input type="text" id="addressLine1" name="address_line1" class="form-control" 
+                                       value="{{ customer.address_line1|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="addressLine2">Address Line 2</label>
+                                <input type="text" id="addressLine2" name="address_line2" class="form-control" 
+                                       value="{{ customer.address_line2|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" class="form-control" 
+                                       value="{{ customer.city|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="state">State / Province</label>
+                                <input type="text" id="state" name="state" class="form-control" 
+                                       value="{{ customer.state|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="zipCode">ZIP / Postal Code</label>
+                                <input type="text" id="zipCode" name="zip_code" class="form-control" 
+                                       value="{{ customer.zip_code|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" name="country" class="form-control">
+                                    <option value="">Select Country</option>
+                                    <option value="US" {% if customer.country == 'US' %}selected{% endif %}>United States</option>
+                                    <option value="CA" {% if customer.country == 'CA' %}selected{% endif %}>Canada</option>
+                                    <option value="UK" {% if customer.country == 'UK' %}selected{% endif %}>United Kingdom</option>
+                                    <option value="AU" {% if customer.country == 'AU' %}selected{% endif %}>Australia</option>
+                                    <option value="DE" {% if customer.country == 'DE' %}selected{% endif %}>Germany</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h4 style="margin-bottom: 15px;">Additional Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="customerSince">Customer Since</label>
+                                <input type="date" id="customerSince" name="customer_since" class="form-control" 
+                                       value="{{ customer.customer_since|default:today }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" name="status" class="form-control">
+                                    <option value="active" {% if customer.status == 'active' %}selected{% endif %}>Active</option>
+                                    <option value="inactive" {% if customer.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                                    <option value="pending" {% if customer.status == 'pending' %}selected{% endif %}>Pending</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customerType">Customer Type</label>
+                                <select id="customerType" name="customer_type" class="form-control">
+                                    <option value="individual" {% if customer.customer_type == 'individual' %}selected{% endif %}>Individual</option>
+                                    <option value="business" {% if customer.customer_type == 'business' %}selected{% endif %}>Business</option>
+                                    <option value="wholesale" {% if customer.customer_type == 'wholesale' %}selected{% endif %}>Wholesale</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="taxId">Tax ID / VAT Number</label>
+                                <input type="text" id="taxId" name="tax_id" class="form-control" 
+                                       value="{{ customer.tax_id|default:'' }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="paymentTerms">Payment Terms</label>
+                                <select id="paymentTerms" name="payment_terms" class="form-control">
+                                    <option value="net15" {% if customer.payment_terms == 'net15' %}selected{% endif %}>Net 15</option>
+                                    <option value="net30" {% if customer.payment_terms == 'net30' %}selected{% endif %}>Net 30</option>
+                                    <option value="net60" {% if customer.payment_terms == 'net60' %}selected{% endif %}>Net 60</option>
+                                    <option value="cod" {% if customer.payment_terms == 'cod' %}selected{% endif %}>Cash on Delivery</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="creditLimit">Credit Limit ($)</label>
+                                <input type="number" id="creditLimit" name="credit_limit" class="form-control" 
+                                       value="{{ customer.credit_limit|default:'0.00' }}" step="0.01">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" name="notes" class="form-control" rows="3" 
+                                      placeholder="Add any notes about this customer...">{{ customer.notes|default:'' }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <a href="customer_list.html" class="btn-secondary">
+                            Cancel
+                        </a>
+                        {% if customer %}
+                        <button type="button" class="btn-danger" onclick="confirmDelete()">
+                            <i class="fa-solid fa-trash"></i> Delete Customer
+                        </button>
+                        {% endif %}
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-save"></i> {% if customer %}Save Changes{% else %}Create Customer{% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="card col-span-1">
+                <div class="chart-header">
+                    <h3>{% if customer %}Customer Stats{% else %}Quick Actions{% endif %}</h3>
+                </div>
+                
+                {% if customer %}
+                <div style="margin-top: 15px;">
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">Total Orders</div>
+                        <div class="stat-card-value">{{ customer.total_orders|default:'0' }}</div>
+                    </div>
+                    
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">Total Spent</div>
+                        <div class="stat-card-value">${{ customer.total_spent|default:'0.00'|floatformat:2 }}</div>
+                    </div>
+                    
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">Avg. Order Value</div>
+                        <div class="stat-card-value">${{ customer.avg_order_value|default:'0.00'|floatformat:2 }}</div>
+                    </div>
+                    
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">Last Order</div>
+                        <div class="stat-card-value" style="font-size: 1rem;">
+                            {{ customer.last_order_date|default:'No orders yet' }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Recent Orders</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        {% for order in customer.recent_orders %}
+                        <div style="background: #f8f9fc; padding: 10px; border-radius: 8px;">
+                            <div style="font-weight: 600; font-size: 0.9rem;">{{ order.number }}</div>
+                            <div style="font-size: 0.8rem; color: var(--secondary);">
+                                {{ order.date }} • ${{ order.amount|floatformat:2 }}
+                            </div>
+                            <span class="badge {{ order.status_badge_class }}" style="margin-top: 5px;">
+                                {{ order.status }}
+                            </span>
+                        </div>
+                        {% empty %}
+                        <div style="text-align: center; color: var(--secondary); padding: 20px;">
+                            <i class="fa-solid fa-shopping-cart" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                            <p>No orders yet</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% if customer.total_orders > 3 %}
+                    <a href="sales_order_list.html?customer={{ customer.id }}" style="display: block; text-align: center; margin-top: 15px; color: var(--primary); font-size: 0.85rem;">
+                        View All Orders
+                    </a>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div style="margin-top: 15px;">
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">Total Customers</div>
+                        <div class="stat-card-value">{{ total_customers|default:'0' }}</div>
+                    </div>
+                    
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">Active Customers</div>
+                        <div class="stat-card-value">{{ active_customers|default:'0' }}</div>
+                    </div>
+                    
+                    <div class="stat-card-alt">
+                        <div class="stat-card-label">New This Month</div>
+                        <div class="stat-card-value">{{ new_customers_this_month|default:'0' }}</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Quick Actions</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="invoice_form.html" class="btn-primary" style="padding: 10px; font-size: 0.9rem; text-align: center;">
+                            <i class="fa-solid fa-file-invoice"></i> Create Invoice
+                        </a>
+                        <a href="sales_order_form.html" class="btn-outline" style="padding: 10px; font-size: 0.9rem; text-align: center;">
+                            <i class="fa-solid fa-cart-plus"></i> Create Order
+                        </a>
+                        <a href="#" class="btn-outline" style="padding: 10px; font-size: 0.9rem; text-align: center;">
+                            <i class="fa-solid fa-file-export"></i> Import Customers
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 10px; padding: 30px; width: 90%; max-width: 400px;">
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fa-solid fa-exclamation-triangle" style="font-size: 1.5rem; color: #991b1b;"></i>
+                </div>
+                <h3 style="margin-bottom: 10px; color: var(--dark);">Delete Customer</h3>
+                <p style="color: var(--secondary); margin-bottom: 20px;">
+                    Are you sure you want to delete this customer? 
+                    This action cannot be undone and will delete all associated data.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn-secondary" onclick="closeDeleteModal()">
+                        Cancel
+                    </button>
+                    <form method="POST" action="{% url 'delete_customer' customer.id %}" style="margin: 0;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-danger">
+                            Yes, Delete Customer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmDelete() {
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+        
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+        
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+        
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            
+            if (!name) {
+                alert('Customer name is required');
+                e.preventDefault();
+                return;
+            }
+            
+            if (!email) {
+                alert('Customer email is required');
+                e.preventDefault();
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                e.preventDefault();
+                return;
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // {% if not customer %}
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const random = Math.floor(Math.random() * 1000);
+            const suggestedId = `CUST-${year}${month}-${random}`;
+            console.log('Suggested Customer ID:', suggestedId);
+            // {% endif %}
+        });
+    </script>
+</body>
+</html>
